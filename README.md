@@ -1,3 +1,4 @@
+# my recipe website 
 # my recipe website startup
 ## elevator pitch
 When I was young, my diet consisted mostly of mac and cheese, toast, or packaged meals. As I grew up, my family and I realized that eating that way is not very healthy. We started looking for recipes that were healthy and tasted good, and slowly we started building up a binder of family recipes. Now, the binder is broken and greasy and starting to lose pages. I want to make a recipe website for my family so that our collection of recipes is safe and can grow bigger than our binder. 
@@ -16,16 +17,16 @@ WebSocket Data - In the bottom right corner of all pages will be a little heart 
 ## rough sketches
 ### home page
 Includes an 'about' section about why I created the website and also a few of the most recently published recipes
-![Alt text](<readmeFiles/Screenshot 2023-09-19 at 8.47.40 AM.png>)
+![home page](<roughSketches/Screenshot 2023-09-19 at 8.47.40 AM.png>)
 ### recipe catalog
 A way to view all recipes stored in the database, with the option to filter by tags, date etc
-![Alt text](<readmeFiles/Screenshot 2023-09-19 at 8.47.51 AM.png>)
+![recipe catalog](<roughSketches/Screenshot 2023-09-19 at 8.47.51 AM.png>)
 ### upload recipe
 This view on upload recipe is based on the manual typing in of a recipe. Other views will be much more simple with just a button (or might not even get to implementing those)
-![Alt text](<readmeFiles/Screenshot 2023-09-19 at 8.48.04 AM.png>)
+![upload recipe page](<roughSketches/Screenshot 2023-09-19 at 8.48.04 AM.png>)
 ### login / my account
 The highlighted button will take you to a login screen. After you login, you will see this screen with your profile (might not include a picture), contributed recipes, and favorited recipes.
-![Alt text](<readmeFiles/Screenshot 2023-09-19 at 8.48.12 AM.png>)
+![login / my account page](<roughSketches/Screenshot 2023-09-19 at 8.48.12 AM.png>)
 ### recipe view
 When you click on a recipe, this is what you will see. If I have time, I will also add a feature where you can comment on recipes. There will also be a button to favorite the current recipe. 
-![Alt text](<readmeFiles/Screenshot 2023-09-19 at 8.49.12 AM.png>)
+![recipe view page](<roughSketches/Screenshot 2023-09-19 at 8.49.12 AM.png>)
