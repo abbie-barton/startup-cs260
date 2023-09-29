@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Make it Good</title>
+    <link rel="icon" type="image/x-icon" href="/assets/startupLogo.svg" />
+  </head>
+  <body>
+    <!-- home page -->
+    <!-- navbar -->
+    <header>
+      <!-- logo is a maybe - still haven't figured out color scheme -->
+      <img src="/assets/startupLogo.svg" alt="make it good logo" />
+      <h1>Make it Good</h1>
+      <ul>
+        <li><a href="index.html">home</a></li>
+        <li><a href="recipeCatalog.html">recipe catalog</a></li>
+        <li><a href="uploadRecipe.html">upload recipe</a></li>
+        <!-- if logged in, shows 'my account' -->
+        <li><a href="account">login/my account</a></li>
+      </ul>
+    </header>
+
+    <!-- when login is pressed (user not logged in) this modal shows -->
+    <div>
+      <h1>Log in</h1>
+      <!-- not super sure how to handle if they have signed in or not -->
+      <a>or Sign Up</a>
+      <form>
+        <label for="username">Username: </label>
+        <input type="text" name="username" id="username" required />
+        <label for="password">Password: </label>
+        <input type="text" name="password" id="password" required />
+        <button type="submit">Log in/Sign up</button>
+      </form>
+    </div>
+
+    <!-- most recent recipes -->
+    <div>
+      <h2>Most recent recipes</h2>
+      <div id="recipeCard">
+        <a href="recipePage.html">
+          <!-- filler image -->
+          <img src="/assets/foodbaby.jpg" alt="filler for image card" width="200"/>
+          <h4>Recipe title</h4>
+          <p>recipe description</p>
+        </a>
+      </div>
+      <div id="recipeCard">
+        <a href="recipePage.html">
+          <!-- filler image -->
+          <img src="/assets/foodbaby.jpg" alt="filler for image card" width="200"/>
+          <h4>Recipe title</h4>
+          <p>recipe description</p>
+        </a>
+      </div>
+      <div id="recipeCard">
+        <a href="recipePage.html">
+          <!-- filler image -->
+          <img src="/assets/foodbaby.jpg" alt="filler for image card" width="200"/>
+          <h4>Recipe title</h4>
+          <p>recipe description</p>
+        </a>
+      </div>
+      <div id="recipeCard">
+        <a href="recipePage.html">
+          <!-- filler image -->
+          <img src="/assets/foodbaby.jpg" alt="filler for image card" width="200"/>
+          <h4>Recipe title</h4>
+          <p>recipe description</p>
+        </a>
+      </div>
+    </div>
+
+    <!-- about us -->
+    <div>
+      <h4>About us</h4>
+      <!-- will replace img with family pic -->
+      <img src="/assets/baking-kid.jpg" alt="placeholder img" width="300"/>
+      <p>We love being in the kitchen and we want to share our recipes with you! These website is a collection of recipes we've found and liked. Enjoy! </p>
+    </div>
+
+    <!-- footer -->
+    <footer>
+      <a
+        href="https://github.com/abbie-barton/startup-cs260.git"
+        target="_blank"
+        >My github repository</a
+      >
+      <img src="/assets/heart-circle.svg" alt="heart icon" width="50"/>
+
+    </footer>
+  </body>
+</html>

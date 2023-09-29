@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Make it Good</title>
+    <link rel="icon" type="image/x-icon" href="/assets/startupLogo.svg" />
+  </head>
+  <body>
+    <!-- recipe catalog page -->
+    <!-- navbar -->
+    <header>
+      <!-- logo is a maybe - still haven't figured out color scheme -->
+      <img src="/assets/startupLogo.svg" alt="make it good logo" />
+      <h1>Make it Good</h1>
+      <ul>
+        <li><a href="index.html">home</a></li>
+        <li><a href="recipeCatalog.html">recipe catalog</a></li>
+        <li><a href="uploadRecipe.html">upload recipe</a></li>
+        <!-- if logged in, shows 'my account' -->
+        <li><a href="account">login/my account</a></li>
+      </ul>
+    </header>
+
+    <!-- when login is pressed (user not logged in) this modal shows -->
+    <div>
+      <h1>Log in</h1>
+      <!-- not super sure how to handle if they have signed in or not -->
+      <a>or Sign Up</a>
+      <form>
+        <label for="username">Username: </label>
+        <input type="text" name="username" id="username" required />
+        <label for="password">Password: </label>
+        <input type="text" name="password" id="password" required />
+        <button type="submit">Log in/Sign up</button>
+      </form>
+    </div>
+
+    <!-- recipe sorting options -->
+    <div>
+      <h1>Recipe catalog</h1>
+      <!-- tentative sort options -->
+      <div>
+        <label for="search-select">Sort by:</label>
+        <select name="search-select" id="search-select">
+          <option value="most recent">Most recent</option>
+          <option value="meal">Meals</option>
+          <option value="dessert">Desserts</option>
+          <option value="side">Side dishes</option>
+          <option value="favorited">Favorited recipes</option>
+        </select>
+      </div>
+      <!-- search box - search by title (maybe add search by tags if time) -->
+      <div>
+        <form>
+          <label for="searchbox">Search By:</label>
+          <input type="text" name="searchbox" id="searchbox" />
+        </form>
+      </div>
+
+      <!-- recipes - maybe 12-16 per page, but I only put 4 here - sorted by most recent default -->
+      <div>
+        <div id="recipeCard">
+            <a href="recipePage.html">
+              <!-- filler image -->
+              <img src="/assets/foodbaby.jpg" alt="filler for image card" width="200"/>
+              <h4>Recipe title</h4>
+              <p>recipe description</p>
+            </a>
+          </div>
+          <div id="recipeCard">
+            <a href="recipePage.html">
+              <!-- filler image -->
+              <img src="/assets/foodbaby.jpg" alt="filler for image card" width="200"/>
+              <h4>Recipe title</h4>
+              <p>recipe description</p>
+            </a>
+          </div>
+          <div id="recipeCard">
+            <a href="recipePage.html">
+              <!-- filler image -->
+              <img src="/assets/foodbaby.jpg" alt="filler for image card" width="200"/>
+              <h4>Recipe title</h4>
+              <p>recipe description</p>
+            </a>
+          </div>
+          <div id="recipeCard">
+            <a href="recipePage.html">
+              <!-- filler image -->
+              <img src="/assets/foodbaby.jpg" alt="filler for image card" width="200"/>
+              <h4>Recipe title</h4>
+              <p>recipe description</p>
+            </a>
+          </div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+        <a
+          href="https://github.com/abbie-barton/startup-cs260.git"
+          target="_blank"
+          >My github repository</a
+        >
+        <img src="/assets/heart-circle.svg" alt="heart icon" width="50"/>
+  
+      </footer>
+  </body>
+</html>
