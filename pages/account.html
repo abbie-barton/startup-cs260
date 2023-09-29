@@ -7,7 +7,6 @@
     <link rel="icon" type="image/x-icon" href="/assets/startupLogo.svg" />
   </head>
   <body>
-    <!-- recipe catalog page -->
     <!-- navbar -->
     <header>
       <!-- logo is a maybe - still haven't figured out color scheme -->
@@ -23,6 +22,7 @@
     </header>
 
     <!-- when login is pressed (user not logged in) this modal shows -->
+    <!-- page will not switch to this account page unless user is logged in - if pressed before, modal will show and on successful log in will navigate to this page -->
     <div>
       <h1>Log in</h1>
       <!-- not super sure how to handle if they have signed in or not -->
@@ -36,30 +36,26 @@
       </form>
     </div>
 
-    <!-- recipe sorting options -->
+    <!-- account information -->
     <div>
-      <h1>Recipe catalog</h1>
-      <!-- tentative sort options -->
-      <div>
-        <label for="search-select">Sort by:</label>
-        <select name="search-select" id="search-select">
-          <option value="most recent">Most recent</option>
-          <option value="meal">Meals</option>
-          <option value="dessert">Desserts</option>
-          <option value="side">Side dishes</option>
-          <option value="favorited">Favorited recipes</option>
-        </select>
-      </div>
-      <!-- search box - search by title (maybe add search by tags if time) -->
-      <div>
-        <form>
-          <label for="searchbox">Search By:</label>
-          <input type="text" name="searchbox" id="searchbox" />
-        </form>
-      </div>
+        <!-- account image - can change but this is the default -->
+        <img src="/assets/cooker.svg" alt="default profile picture" width="200">
+        <h3>Best Cook in the World</h3>
+        <p>expert chef</p>
+        <!-- on button press, can update picture, name, or tag/description -->
+        <button>Edit</button>
+        <label for="update-picture">Upload profile pic</label>
+        <input type="file" name="update-picture" id="update-picture" accept="application/pdf">
+        <label for="update-title">Edit title</label>
+        <input type="text" name="update-title" id="update-title"/>
+        <label for="update-name">Edit name</label>
+        <input type="text" name="update-name" id="update-name"/>
+    </div>
 
-      <!-- recipes - maybe 12-16 per page, but I only put 4 here - sorted by most recent default -->
-      <div>
+    <!-- contributed recipes -->
+    <div>
+        <h2>Contributed Recipes</h2>
+        <!-- however many recipes author has contributed. if none then shows: upload recipes to view contributions -->
         <div id="recipeCard">
             <a href="recipePage.html">
               <!-- filler image -->
@@ -76,7 +72,13 @@
               <p>recipe description</p>
             </a>
           </div>
-          <div id="recipeCard">
+    </div>
+
+    <!-- favorited recipes -->
+    <div>
+        <h2>My favorited recipes</h2>
+        <p>click on the heart icon on a recipe page to favorite the recipe and come back to it later!</p>
+        <div id="recipeCard">
             <a href="recipePage.html">
               <!-- filler image -->
               <img src="/assets/foodbaby.jpg" alt="filler for image card" width="200"/>
@@ -92,18 +94,16 @@
               <p>recipe description</p>
             </a>
           </div>
-      </div>
     </div>
 
     <!-- footer -->
     <footer>
-        <a
-          href="https://github.com/abbie-barton/startup-cs260.git"
-          target="_blank"
-          >My github repository</a
-        >
-        <img src="/assets/heart-circle.svg" alt="heart icon" width="50"/>
-  
-      </footer>
+      <a
+        href="https://github.com/abbie-barton/startup-cs260.git"
+        target="_blank"
+        >My github repository</a
+      >
+      <img src="/assets/heart-circle.svg" alt="heart icon" width="50" />
+    </footer>
   </body>
 </html>
