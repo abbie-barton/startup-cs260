@@ -38,38 +38,82 @@
     <!-- select upload method -->
     <!-- I might only do 1 or 2 methods if there's no time to implement pdf -->
     <div>
-        <h1>Select upload method:</h1>
-        <ul>
-            <li>pdf</li>
-            <li>website url</li>
-            <!-- default - manual = type it in yourself -->
-            <li>manual</li>
-        </ul>
+      <h1>Select upload method:</h1>
+      <ul>
+        <li>pdf</li>
+        <li>website url</li>
+        <!-- default - manual = type it in yourself -->
+        <li>manual</li>
+      </ul>
     </div>
 
     <!-- the page will show different views based on which upload method is selected -->
     <!-- pdf view - only accepts pdf file type -->
     <div>
-        <h2>File Upload</h2>
-        <label for="file-upload">Choose a file to upload</label>
-        <input type="file" id="file-upload" name="file-upload" accept="application/pdf" />
-        <!-- show preview here -->
-        <label for="recipe-notes">Write down any notes you have here:</label>
-        <input type="text" id="recipe-notes" name="recipe-notes" />
-        <button>Upload</button>
+      <h2>File Upload</h2>
+      <label for="file-upload">Choose a file to upload</label>
+      <input
+        type="file"
+        id="file-upload"
+        name="file-upload"
+        accept="application/pdf"
+      />
+      <!-- show preview here -->
+      <label for="recipe-notes">Write down any notes you have here:</label>
+      <input type="text" id="recipe-notes" name="recipe-notes" />
+      <button>Upload</button>
     </div>
 
     <!-- website url view -->
     <div>
-        <h2>Upload with Website URL</h2>
-        <p>Provide a URL to the recipe on the website, and it will be displayed as an available recipe here.</p>
-        <label for="url-upload">URL:</label>
-        <input type="url" name="url-upload" id="url-upload" />
-        <!-- show iframe preview here -->
-        <iframe src="www.google.com"  title="recipe-preview"></iframe>
-        <label for="recipe-notes">Write down any notes you have here:</label>
-        <input type="text" id="recipe-notes" name="recipe-notes" />
+      <h2>Upload with Website URL</h2>
+      <p>
+        Provide a URL to the recipe on the website, and it will be displayed as
+        an available recipe here.
+      </p>
+      <label for="url-upload">URL:</label>
+      <input type="url" name="url-upload" id="url-upload" />
+      <!-- show iframe preview here - example iframe for reference -->
+      <iframe
+        width="560"
+        height="315"
+        src="https://www.youtube.com/embed/2oUxr7149DY?si=bDVszX_TNA-5MBJH"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+      <label for="recipe-notes">Write down any notes you have here:</label>
+      <input type="text" id="recipe-notes" name="recipe-notes" />
+      <button>Upload Recipe</button>
+    </div>
+
+    <!-- manual recipe upload -->
+    <div>
+      <h2>Manual Recipe Upload</h2>
+      <h3>Upload Picture(s)</h3>
+      <form>
+        <label for="recipe-pic-upload">Choose a file to upload</label>
+        <input
+          type="file"
+          id="recipe-pic-upload"
+          name="recipe-pic-upload"
+          accept="application/pdf"
+        />
+        <label for="recipe-title">Recipe title:</label>
+        <input type="text" name="recipe-title" id="recipe-title" />
+        <label for="recipe-servings">Servings:</label>
+        <input type="number" name="recipe-servings" id="recipe-servings"/>
+        <label for="recipe-time">Time to make:</label>
+        <input type="number" name="recipe-time" id="recipe-time" />
+        <label for="ingredients">Ingredients:</label>
+        <!-- automatically show new text boxes if one has been typed in  -->
+        <input type="text" name="ingredients" id="ingredients" />
+        <label for="instructions">Directions:</label>
+        <input type="text" name="instructions" id="instructions"/>
+        <!-- if not signed in pressing upload button will prompt sign in - Author will be this person. -->
         <button>Upload</button>
+      </form>
     </div>
 
     <!-- footer -->
