@@ -105,3 +105,8 @@ footer a:hover {
     -moz-box-shadow: 1px 1px 24px -5px rgba(122,114,114,0.51);
 }
 
+textarea {
+    color: #787878;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
