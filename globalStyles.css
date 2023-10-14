@@ -110,3 +110,7 @@ textarea {
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
 }
+
+#favorite-icon:hover {
+    cursor: pointer;
+}

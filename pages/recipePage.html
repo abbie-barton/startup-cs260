@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Make it Good</title>
     <link rel="icon" type="image/x-icon" href="/assets/startupLogo.svg" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../globalStyles.css"/>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../globalStyles.css" />
   </head>
   <body>
     <!-- view a recipe page -->
@@ -28,60 +33,78 @@
     </header>
 
     <!-- when login is pressed (user not logged in) this modal shows -->
-    <div>
-      <div id="login">
-        <h1>Log in</h1>
-        <!-- not super sure how to handle if they have signed in or not -->
-        <form id="login-form" class="d-flex flex-column">
-          <label for="username" class="form-label">Username: </label>
-          <input type="text" name="username" id="username" class="form-control" required />
-          <label for="password" class="form-label">Password: </label>
-          <input type="text" name="password" id="password" class="form-control" required />
-  
-          <button type="submit" class="btn pt-2">Log in/Sign up</button>
-        </form>
-      </div>
+    <div id="login">
+      <h1>Log in</h1>
+      <!-- not super sure how to handle if they have signed in or not -->
+      <form id="login-form" class="d-flex flex-column">
+        <label for="username" class="form-label">Username: </label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          class="form-control"
+          required
+        />
+        <label for="password" class="form-label">Password: </label>
+        <input
+          type="text"
+          name="password"
+          id="password"
+          class="form-control"
+          required
+        />
+
+        <button type="submit" class="btn pt-2">Log in/Sign up</button>
+      </form>
+    </div>
 
     <!-- main recipe page - body -->
-    <div>
-      <!-- maybe a picture gallery? -->
-      <img
-        src="/assets/foodbaby.jpg"
-        alt="recipe image placeholder"
-        width="500"
-      />
+    <div class="d-flex flex-column px-xxl-5">
       <!-- filler data - will come from recipe api -->
-      <p>author: jimmy kicker</p>
-      <p>posted on: Nov 4 2022</p>
-      <!-- comments section -->
-      <div>
-        <div id="commentCard">
-          <!-- optional account img uploaded - otherwise will default to cooker img -->
-          <img src="/assets/cooker.svg" alt="chef image" width="50" />
-          <h4>Bonnie Nickelback</h4>
-          <p>
-            Love love love this recipe! Only things I changed was that I added
-            paprika and 1 tbsp more flour and also some basil leaves and chopped
-            up fresh thyme. 100/10 very nice
-          </p>
-        </div>
-        <div id="commentCard">
-          <!-- optional account img uploaded - otherwise will default to cooker img -->
-          <img src="/assets/cooker.svg" alt="chef image" width="50" />
-          <h4>Geoffrey Bigfriendlygiant</h4>
-          <p>This was pretty nice. Better than eating grass fr</p>
-        </div>
-      </div>
+
       <!-- main recipe -->
-      <div>
-        <h1>beefed up ramen</h1>
+      <div class="d-flex flex-column align-items-start justify-content-center">
+        <div class="d-flex flex-row justify-content-between">
+          <h1>beefed up ramen</h1>
+          <!-- favorite recipe option -->
+          <!-- if clicked and not logged in, shows log in modal above -->
+          <div id="favorite-icon" class="px-2">
+            <img
+              src="/assets/heart-circle.svg"
+              alt="favorite recipe icon"
+              width="50"
+            />
+          </div>
+        </div>
+        <div class="d-flex flex-row">
+          <p class="pr-lg-5">author: jimmy kicker</p>
+          <p class="px-lg-5">posted on: Nov 4 2022</p>
+        </div>
         <p>
           I created this recipe because I was so tired of eating plain ramen.
           Here's a few things you can do to beef up your cheapest meal. You'll
           thank me later
         </p>
-        <h2>cook time: 10 mins</h2>
-        <h2>servings: 1</h2>
+        <!-- might replace with a carousel if i can figure that out -->
+        <!-- will show up to three images in a row - might change to grid when js is added -->
+        <div
+          class="d-flex flex-row justify-content-center align-items-center py-4"
+        >
+          <img
+            src="/assets/foodbaby.jpg"
+            alt="recipe picture"
+            class="w-25 px-2"
+          />
+          <img
+            src="/assets/baking-kid.jpg"
+            alt="recipe picture"
+            class="w-25 px-2"
+          />
+        </div>
+        <div class="d-flex flex-row">
+          <h3 class="pr-5">cook time: 10 mins</h3>
+          <h3 class="px-5">servings: 1</h3>
+        </div>
         <h3>ingredients:</h3>
         <ul>
           <li>1 package of ramen</li>
@@ -102,11 +125,40 @@
           </li>
         </ul>
       </div>
-      <!-- favorite recipe option -->
-      <!-- if clicked and not logged in, shows log in modal above -->
-      <div>
-        <p>favorite recipe</p>
-        <img src="/assets/heart-circle.svg" alt="favorite recipe icon" width="100"/>
+    </div>
+
+    <!-- comments section -->
+    <h4 class="px-lg-5 py-2">Comments</h4>
+    <div class="container text-start pb-4">
+      <div id="commentCard" class="row">
+        <!-- optional account img uploaded - otherwise will default to cooker img -->
+        <img
+          src="/assets/cooker.svg"
+          alt="chef image"
+          width="50"
+          class="col-sm-1"
+        />
+        <div class="col-10">
+          <h4 class="fw-light">Bonnie Nickelback</h4>
+          <p>
+            Love love love this recipe! Only things I changed was that I added
+            paprika and 1 tbsp more flour and also some basil leaves and chopped
+            up fresh thyme. 100/10 very nice
+          </p>
+        </div>
+      </div>
+      <div id="commentCard" class="row">
+        <!-- optional account img uploaded - otherwise will default to cooker img -->
+        <img
+          src="/assets/cooker.svg"
+          alt="chef image"
+          width="50"
+          class="col-sm-1"
+        />
+        <div class="col-10">
+          <h4 class="fw-light">Geoffrey Bigfriendlygiant</h4>
+          <p>This was pretty nice. better than eating paper towle for diner</p>
+        </div>
       </div>
     </div>
 
@@ -118,8 +170,12 @@
         >My github repository</a
       >
       <img src="/assets/heart-circle.svg" alt="heart icon" width="50" />
+
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"
+      ></script>
     </footer>
-
   </body>
-
 </html>
