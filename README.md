@@ -32,10 +32,20 @@ When you click on a recipe, this is what you will see. If I have time, I will al
 ![recipe view page](<roughSketches/Screenshot 2023-09-19 at 8.49.12 AM.png>)
 
 # HTML Deliverable
-* five page templates (html only) - most will show certain things conditionally
+### five page templates (html only) - most will show certain things conditionally
 * links - each page has a navbar common to all pages with links to each different page. Clicking on a recipe will also take you to the recipe template page.
 * text - most text will also be provided by users. Most text in the html is placeholder text, but in other places (ex forms) that's how the text will be. 
 * images - all images are placeholders. Images for recipes will be held in the database so when recipes are loaded, they will be loaded with a unique picture
 * login - pressing on the account link in the navbar will open a login prompt
 * database - recipes and users will be held in the database
 * websocket - the heart icon in the footer will do a little animation or something whenever someone favorites a recipe
+
+# CSS Deliverable
+### styling of the five html pages - mix of bootstrap and css (globalStyles.css)
+* Header, footer, and main content body - styled
+* Navigation elements - most a tags will show an underline on hover, show as clickable
+* Responsive to window resizing - used bootstrap grid and flex so resize works on all screen sizes
+* Application elements - lots of whitespace so it looks minimalistic, things easy to find
+* Application text content - font is the same across the website
+* Application images - placeholders for now, not styled properly
+note - the iframe will be different as a website has different iframe than youtube ... still need to figure out media sizing for it and if that's the best way to include a url to a different website.
