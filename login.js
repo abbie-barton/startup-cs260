@@ -16,7 +16,6 @@ const login = () => {
 const showModal = () => {
   const modal = document.querySelector("#modal");
   const openModal = document.querySelector("#user");
-  debugger;
 
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function (event) {
