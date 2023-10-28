@@ -12,6 +12,8 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../globalStyles.css" />
+
+    <script src="login.js"></script>
   </head>
   <body>
     <!-- recipe catalog page -->
@@ -36,7 +38,7 @@
       <h1>Log in</h1>
       <!-- not super sure how to handle if they have signed in or not -->
       <form id="login-form" class="d-flex flex-column">
-        <label for="username" class="form-label">Username: </label>
+        <label for="username" class="form-label" id="username">Username: </label>
         <input
           type="text"
           name="username"
@@ -44,7 +46,7 @@
           class="form-control"
           required
         />
-        <label for="password" class="form-label">Password: </label>
+        <label for="password" class="form-label" id="password">Password: </label>
         <input
           type="text"
           name="password"
@@ -53,7 +55,7 @@
           required
         />
 
-        <button type="submit" class="btn pt-2">Log in/Sign up</button>
+        <button type="submit" class="btn pt-2" id="login-button" onclick="login()">Log in/Sign up</button>
       </form>
     </div>
 

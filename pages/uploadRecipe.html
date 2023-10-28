@@ -12,6 +12,8 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../globalStyles.css" />
+
+    <script src="login.js"></script>
   </head>
   <body>
     <!-- navbar -->
@@ -31,68 +33,43 @@
     </header>
 
     <!-- when login is pressed (user not logged in) this modal shows -->
-    <div id="login">
-      <h1>Log in</h1>
-      <!-- not super sure how to handle if they have signed in or not -->
-      <form id="login-form" class="d-flex flex-column">
-        <label for="username" class="form-label">Username: </label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          class="form-control"
-          required
-        />
-        <label for="password" class="form-label">Password: </label>
-        <input
-          type="text"
-          name="password"
-          id="password"
-          class="form-control"
-          required
-        />
+    <div id="modal">
+      <div id="login">
+        <h1>Log in</h1>
+        <!-- not super sure how to handle if they have signed in or not -->
+        <form id="login-form" class="d-flex flex-column">
+          <label for="username" class="form-label" id="username"
+            >Username:
+          </label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            class="form-control"
+            required
+            autocomplete="on"
+          />
+          <label for="password" class="form-label" id="password"
+            >Password:
+          </label>
+          <input
+            type="text"
+            name="password"
+            id="password"
+            class="form-control"
+            required
+            autocomplete="on"
+          />
 
-        <button type="submit" class="btn pt-2">Log in/Sign up</button>
-      </form>
-    </div>
-
-    <!-- select upload method -->
-    <!-- I might only do 1 or 2 methods if there's no time to implement pdf -->
-    <div
-      class="d-flex flex-column justify-content-center align-items-center pt-lg-4"
-    >
-      <h2>Select upload method:</h2>
-      <p>url</p>
-      <p>manual</p>
-    </div>
-
-    <!-- the page will show different views based on which upload method is selected -->
-
-    <!-- website url view -->
-    <div class="d-flex flex-column justify-content-center align-items-center">
-      <h2>Upload with Website URL</h2>
-      <p>
-        Provide a URL to the recipe on the website, and it will be displayed as
-        an available recipe here.
-      </p>
-      <div class="d-flex flex-column gap-3">
-        <label for="url-upload">URL:</label>
-        <input type="url" name="url-upload" id="url-upload" />
-        <!-- show iframe preview here - example iframe for reference, will be quite large -->
-
-        <iframe
-          width="560"
-          height="315"
-          src="https://www.youtube.com/embed/2oUxr7149DY?si=bDVszX_TNA-5MBJH"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
-
-        <label for="recipe-notes">Write down any notes you have here:</label>
-        <input type="text" id="recipe-notes" name="recipe-notes" />
-        <button class="btn">Upload Recipe</button>
+          <button
+            type="submit"
+            class="btn pt-2"
+            id="login-button"
+            onclick="login()"
+          >
+            Log in/Sign up
+          </button>
+        </form>
       </div>
     </div>
 

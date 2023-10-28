@@ -67,21 +67,6 @@ header a:hover {
     border-bottom: 1px solid #e8dac6;
 }
 
-#login {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
-    width: 25rem;
-    border-radius: 1rem;
-    padding: 1rem;
-    background-color: #ffe5d0;
-    box-shadow: 1px 1px 24px -5px rgba(122,114,114,0.51);
-    -webkit-box-shadow: 1px 1px 24px -5px rgba(122,114,114,0.51);
-    -moz-box-shadow: 1px 1px 24px -5px rgba(122,114,114,0.51);
-}
-
 footer {
     display: flex;
     flex-direction: row;
@@ -119,4 +104,34 @@ textarea {
     #about {
         display: none;
     }
+}
+
+#modal {
+  display: none; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; 
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0,0.4); 
+}
+
+#login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+    border-radius: 1rem;
+    background-color: #ffe5d0;
+    box-shadow: 1px 1px 24px -5px rgba(122,114,114,0.51);
+    -webkit-box-shadow: 1px 1px 24px -5px rgba(122,114,114,0.51);
+    -moz-box-shadow: 1px 1px 24px -5px rgba(122,114,114,0.51);
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 3rem;
+    border: 1px solid #888;
+    width: 25rem;
 }
