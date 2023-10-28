@@ -32,45 +32,6 @@
       </ul>
     </header>
 
-    <!-- when login is pressed (user not logged in) this modal shows -->
-    <div id="modal">
-      <div id="login">
-        <h1>Log in</h1>
-        <!-- not super sure how to handle if they have signed in or not -->
-        <form id="login-form" class="d-flex flex-column">
-          <label for="usernameInput" class="form-label" id="username"
-            >Username:
-          </label>
-          <input
-            type="text"
-            id="usernameInput"
-            class="form-control"
-            required
-            autocomplete="on"
-          />
-          <label for="passwordInput" class="form-label" id="password"
-            >Password:
-          </label>
-          <input
-            type="text"
-            id="passwordInput"
-            class="form-control"
-            required
-            autocomplete="on"
-          />
-
-          <button
-            type="submit"
-            class="btn pt-2"
-            id="login-button"
-            onclick="login()"
-          >
-            Log in/Sign up
-          </button>
-        </form>
-      </div>
-    </div>
-
     <!-- manual recipe upload -->
     <div class="px-lg-5 pb-lg-5" id="form-holder">
       <div class="d-flex flex-column align-items-center">
@@ -86,20 +47,48 @@
         />
         <div class="d-flex flex-row align-items-center justify-content-center">
           <label for="recipe-title" class="px-2">Recipe title:</label>
-          <input type="text" name="recipe-title" id="recipe-title" required>
+          <input type="text" name="recipe-title" id="recipe-title" required />
           <label for="recipe-servings" class="px-2">Servings:</label>
-          <input type="number" name="recipe-servings" id="recipe-servings" required/>
+          <input
+            type="number"
+            name="recipe-servings"
+            id="recipe-servings"
+            required
+          />
           <label for="recipe-time" class="px-2">Time to make:</label>
-          <input type="number" name="recipe-time" id="recipe-time" required/>
+          <input type="number" name="recipe-time" id="recipe-time" required />
         </div>
-        <label for="ingredients">Ingredients:</label>
+        <label for="description">Recipe description:</label>
         <!-- automatically show new text boxes if one has been typed in  -->
-        <textarea name="ingredients" id="ingredients" rows="5" cols="33" required onclick="handleTextBox(true)">
+        <textarea
+          name="description"
+          id="description"
+          rows="3"
+          cols="33"
+          required
+          onclick="handleTextBox(true)"
+        ></textarea>
+        <label for="ingredients">Ingredients:</label>
+        <textarea
+          name="ingredients"
+          id="ingredients"
+          rows="5"
+          cols="33"
+          required
+          onclick="handleTextBox(true)"
+        >
 Write ingredients here - press enter after each ingredient</textarea
         >
         <label for="instructions">Directions:</label>
-        <textarea name="instructions" id="instructions" rows="5" cols="33" required onclick="handleTextBox(false)">
-Write recipe steps here</textarea
+        <textarea
+          name="instructions"
+          id="instructions"
+          rows="5"
+          cols="33"
+          required
+          onclick="handleTextBox(false)"
+        >
+Write recipe steps here - press enter after each ingredient</textarea
         >
         <!-- if not signed in pressing upload button will prompt sign in - Author will be this person. -->
         <button class="btn p-2 pb-4" onclick="saveRecipe()">Upload</button>

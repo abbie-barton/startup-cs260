@@ -5,6 +5,7 @@ const saveRecipe = () => {
   const servings = document.getElementById("recipe-servings");
   const time = document.getElementById("recipe-time");
   const title = document.getElementById("recipe-title");
+  const description = document.getElementById("description");
   const ingredients = document.getElementById("ingredients");
   const instructions = document.getElementById("instructions");
 
@@ -12,22 +13,28 @@ const saveRecipe = () => {
     servings.value &&
     time.value &&
     title.value &&
+    description.value &&
     ingredients.value &&
     instructions.value
   ) {
-    // parse ingredients into an array of strings
+    // parse ingredients & instructions into an array of strings
     const parsedIngredients = ingredients.value.split("\n");
-
-    // parse instructions into an array of strings
     const parsedInstructions = instructions.value.split("\n");
 
+    const date = new Date();
+    const dateString = date.getMonth + "/" + date.getDay() + "/" + date.getFullYear();
+
     const newRecipe = {
-      image: recipePicture,
-      title: title,
-      servings: servings,
-      time: time,
+      // since localStorage can only hold strings, image for now will only hold file path and will not be displayed
+      image: recipePicture.value,
+      title: title.value,
+      servings: servings.value,
+      time: time.value,
+      description: description.value,
       ingredients: parsedIngredients,
       instructions: parsedInstructions,
+      author: localStorage.getItem("userName"),
+      date: dateString,
     };
 
     // for right now put it into local storage, later will post it into the database

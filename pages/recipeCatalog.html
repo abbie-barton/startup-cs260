@@ -13,7 +13,7 @@
     />
     <link rel="stylesheet" href="../globalStyles.css" />
 
-    <script src="login.js"></script>
+    <script src="../displayRecipe.js"></script>
   </head>
   <body>
     <!-- recipe catalog page -->
@@ -32,32 +32,6 @@
         <li><a href="account.html">login/my account</a></li>
       </ul>
     </header>
-
-    <!-- when login is pressed (user not logged in) this modal shows -->
-    <div id="login">
-      <h1>Log in</h1>
-      <!-- not super sure how to handle if they have signed in or not -->
-      <form id="login-form" class="d-flex flex-column">
-        <label for="username" class="form-label" id="username">Username: </label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          class="form-control"
-          required
-        />
-        <label for="password" class="form-label" id="password">Password: </label>
-        <input
-          type="text"
-          name="password"
-          id="password"
-          class="form-control"
-          required
-        />
-
-        <button type="submit" class="btn pt-2" id="login-button" onclick="login()">Log in/Sign up</button>
-      </form>
-    </div>
 
     <!-- recipe sorting options -->
     <div class="px-lg-5">
@@ -81,69 +55,58 @@
             <input type="text" name="searchbox" id="searchbox" />
           </form>
         </div>
+        <button class="btn p-0 mx-5" onclick="saveSortOptions()">search<img class="ms-2" src="/assets/search.svg" alt="search-button" width="30"></button>
       </div>
 
       <!-- recipes - maybe 12-16 per page, but I only put 4 here - sorted by most recent default -->
-      <div class="container text-center py-4">
-        <div class="row">
-          <div id="recipeCard" class="col text-start">
-            <a href="recipePage.html">
+      <div class="container text-start py-4">
+        <div class="row g-2">
+          <div id="recipeCard" class="col">
+            <a href="/pages/recipePage.html">
               <!-- filler image -->
               <img
                 src="/assets/foodbaby.jpg"
                 alt="filler for image card"
-                width="200"
+                width="300"
               />
-              <h4>Recipe title</h4>
-              <p>recipe description</p>
+              <h4 class="recipe-title">Recipe title</h4>
+              <p class="recipe-description">recipe description</p>
             </a>
           </div>
-          <div id="recipeCard" class="col text-start">
-            <a href="recipePage.html">
+          <div id="recipeCard" class="col">
+            <a href="/pages/recipePage.html">
               <!-- filler image -->
               <img
                 src="/assets/foodbaby.jpg"
                 alt="filler for image card"
-                width="200"
+                width="300"
               />
-              <h4>Recipe title</h4>
-              <p>recipe description</p>
+              <h4 class="recipe-title">Recipe title</h4>
+              <p class="recipe-description">recipe description</p>
             </a>
           </div>
-          <div id="recipeCard" class="col text-start">
-            <a href="recipePage.html">
+          <div id="recipeCard" class="col">
+            <a href="/pages/recipePage.html">
               <!-- filler image -->
               <img
                 src="/assets/foodbaby.jpg"
                 alt="filler for image card"
-                width="200"
+                width="300"
               />
-              <h4>Recipe title</h4>
-              <p>recipe description</p>
+              <h4 class="recipe-title">Recipe title</h4>
+              <p class="recipe-description">recipe description</p>
             </a>
           </div>
-          <div id="recipeCard" class="col text-start">
-            <a href="recipePage.html">
+          <div id="recipeCard" class="col">
+            <a href="/pages/recipePage.html">
               <!-- filler image -->
               <img
                 src="/assets/foodbaby.jpg"
                 alt="filler for image card"
-                width="200"
+                width="300"
               />
-              <h4>Recipe title</h4>
-              <p>recipe description</p>
-            </a>
-          </div>
-          <div id="recipeCard" class="col text-start">
-            <a href="recipePage.html">
-              <!-- filler image -->
-              <img
-                src="/assets/foodbaby.jpg"
-                alt="filler for image card"
-                width="200"
-              />
-              <h4>Recipe title</h4>
-              <p>recipe description</p>
+              <h4 class="recipe-title">Recipe title</h4>
+              <p class="recipe-description">recipe description</p>
             </a>
           </div>
         </div>

@@ -13,14 +13,12 @@
     />
     <link rel="stylesheet" href="../globalStyles.css" />
 
-    <script src="login.js"></script>
+    <script src="../displayRecipePage.js"></script>
   </head>
   <body>
     <!-- view a recipe page -->
-
     <!-- navbar -->
     <header>
-      <!-- logo is a maybe - still haven't figured out color scheme -->
       <div id="logo-container">
         <img id="logo" src="/assets/startupLogo.svg" alt="make it good logo" />
         <h1 id="make-it-good">Make it Good</h1>
@@ -29,36 +27,9 @@
         <li><a href="../index.html">home</a></li>
         <li><a href="recipeCatalog.html">recipe catalog</a></li>
         <li><a href="uploadRecipe.html">upload recipe</a></li>
-        <!-- if logged in, shows 'my account' -->
         <li><a href="account.html">login/my account</a></li>
       </ul>
     </header>
-
-    <!-- when login is pressed (user not logged in) this modal shows -->
-    <div id="login">
-      <h1>Log in</h1>
-      <!-- not super sure how to handle if they have signed in or not -->
-      <form id="login-form" class="d-flex flex-column">
-        <label for="username" class="form-label" id="username">Username: </label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          class="form-control"
-          required
-        />
-        <label for="password" class="form-label" id="password">Password: </label>
-        <input
-          type="text"
-          name="password"
-          id="password"
-          class="form-control"
-          required
-        />
-
-        <button type="submit" class="btn pt-2" id="login-button" onclick="login()">Log in/Sign up</button>
-      </form>
-    </div>
 
     <!-- main recipe page - body -->
     <div class="d-flex flex-column px-xxl-5">
@@ -67,7 +38,7 @@
       <!-- main recipe -->
       <div class="d-flex flex-column align-items-start justify-content-center">
         <div class="d-flex flex-row justify-content-between">
-          <h1>beefed up ramen</h1>
+          <h1 id="title">beefed up ramen</h1>
           <!-- favorite recipe option -->
           <!-- if clicked and not logged in, shows log in modal above -->
           <div id="favorite-icon" class="px-2">
@@ -79,10 +50,10 @@
           </div>
         </div>
         <div class="d-flex flex-row">
-          <p class="pr-lg-5">author: jimmy kicker</p>
-          <p class="px-lg-5">posted on: Nov 4 2022</p>
+          <p id="author" class="pr-lg-5">author: jimmy kicker</p>
+          <p id="date" class="px-lg-5">posted on: Nov 4 2022</p>
         </div>
-        <p>
+        <p id="description">
           I created this recipe because I was so tired of eating plain ramen.
           Here's a few things you can do to beef up your cheapest meal. You'll
           thank me later
@@ -104,11 +75,11 @@
           />
         </div>
         <div class="d-flex flex-row">
-          <h3 class="pr-5">cook time: 10 mins</h3>
-          <h3 class="px-5">servings: 1</h3>
+          <h3 id="time" class="pr-5">cook time: 10 mins</h3>
+          <h3 id="servings" class="px-5">servings: 1</h3>
         </div>
         <h3>ingredients:</h3>
-        <ul>
+        <ul id="ingredients">
           <li>1 package of ramen</li>
           <li>slice of beef</li>
           <li>egg</li>
@@ -117,7 +88,7 @@
           <li>0.5cup chopped bok choy</li>
         </ul>
         <h3>directions</h3>
-        <ul>
+        <ul id="directions">
           <li>make the ramen according to package directions</li>
           <li>add the egg while ramen is still boiling hot so it cooks</li>
           <li>add the slice of beef and the sesame oil and stir, stir</li>
@@ -131,7 +102,7 @@
 
     <!-- comments section -->
     <h4 class="px-lg-5 py-2">Comments</h4>
-    <div class="container text-start pb-4">
+    <div class="container text-start pb-4" id="comment-container">
       <div id="commentCard" class="row">
         <!-- optional account img uploaded - otherwise will default to cooker img -->
         <img
@@ -161,6 +132,11 @@
           <h4 class="fw-light">Geoffrey Bigfriendlygiant</h4>
           <p>This was pretty nice. better than eating paper towle for diner</p>
         </div>
+      </div>
+      <div>
+        <h2>add a comment: </h2>
+        <textarea name="add-comment">write your comment here</textarea>
+        <button>publish comment</button>
       </div>
     </div>
 
