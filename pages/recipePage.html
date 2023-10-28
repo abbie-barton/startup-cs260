@@ -103,41 +103,20 @@
     <!-- comments section -->
     <h4 class="px-lg-5 py-2">Comments</h4>
     <div class="container text-start pb-4" id="comment-container">
-      <div id="commentCard" class="row">
-        <!-- optional account img uploaded - otherwise will default to cooker img -->
-        <img
-          src="/assets/cooker.svg"
-          alt="chef image"
-          width="50"
-          class="col-sm-1"
-        />
-        <div class="col-10">
-          <h4 class="fw-light">Bonnie Nickelback</h4>
-          <p>
-            Love love love this recipe! Only things I changed was that I added
-            paprika and 1 tbsp more flour and also some basil leaves and chopped
-            up fresh thyme. 100/10 very nice
-          </p>
-        </div>
-      </div>
-      <div id="commentCard" class="row">
-        <!-- optional account img uploaded - otherwise will default to cooker img -->
-        <img
-          src="/assets/cooker.svg"
-          alt="chef image"
-          width="50"
-          class="col-sm-1"
-        />
-        <div class="col-10">
-          <h4 class="fw-light">Geoffrey Bigfriendlygiant</h4>
-          <p>This was pretty nice. better than eating paper towle for diner</p>
-        </div>
-      </div>
-      <div>
-        <h2>add a comment: </h2>
-        <textarea name="add-comment">write your comment here</textarea>
-        <button>publish comment</button>
-      </div>
+    </div>
+    <div class="px-lg-5 pb-4 d-flex flex-column">
+      <label for="add-comment">add comment:</label>
+      <textarea
+        name="add-comment"
+        id="add-comment"
+        rows="2"
+        cols="33"
+        required
+        onclick="handleTextArea()"
+      >
+Write your comment here</textarea
+      >
+      <button class="btn" onclick="addNewComment()">publish comment</button>
     </div>
 
     <!-- footer -->
