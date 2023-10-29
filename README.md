@@ -49,3 +49,10 @@ When you click on a recipe, this is what you will see. If I have time, I will al
 * Application text content - font is the same across the website
 * Application images - placeholders for now, not styled properly
 note - the iframe will be different as a website has different iframe than youtube ... still need to figure out media sizing for it and if that's the best way to include a url to a different website.
+
+# Javascript Deliverable
+### adding javascript for functionality / beginning functionality of website
+* login - when you first go to the website, the login page shows. Login information is stored in localStorage, and after login the user has access to the rest of the site.
+* database - all the recipes are stored in the database - for right now recipe is stored in localStorage with the fields that it will have in the database. Recipes will be dynamically shown both on the recipe page and on the catalog/home/account pages. The user is also stored in the database with its own fields including favorited recipes. Search terms are saved to localStorage and once the database and apis are done, they will filter through the recipes.
+* webSocket - using setInterval, webSocket data is shown as it will when it is implemented. When webSocket is actually implemented, it will display a new entry whenever a recipe is favorited by a user.
+* application logic - rendering of the recipeCards and the recipePage (recipe and comments) are done dynamically with data from localStorage. Functionality to add a comment and see it immediately posted and functionality to post a recipe are included.
