@@ -13,7 +13,8 @@
     />
     <link rel="stylesheet" type="text/css" href="../globalStyles.css" />
 
-    <script src="login.js"></script>
+    <script src="../favorite.js"></script>
+    <script src="../displayRecipe.js"></script>
   </head>
   <body>
     <!-- navbar -->
@@ -28,36 +29,9 @@
         <li><a href="recipeCatalog.html">recipe catalog</a></li>
         <li><a href="uploadRecipe.html">upload recipe</a></li>
         <!-- if logged in, shows 'my account' -->
-        <li><a href="account.html">login/my account</a></li>
+        <li><a href="account.html">my account</a></li>
       </ul>
     </header>
-
-    <!-- when login is pressed (user not logged in) this modal shows -->
-    <!-- page will not switch to this account page unless user is logged in - if pressed before, modal will show and on successful log in will navigate to this page -->
-    <div id="login">
-      <h1>Log in</h1>
-      <!-- not super sure how to handle if they have signed in or not -->
-      <form id="login-form" class="d-flex flex-column">
-        <label for="username" class="form-label" id="username">Username: </label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          class="form-control"
-          required
-        />
-        <label for="password" class="form-label" id="password">Password: </label>
-        <input
-          type="text"
-          name="password"
-          id="password"
-          class="form-control"
-          required
-        />
-
-        <button type="submit" class="btn pt-2" id="login-button" onclick="login()">Log in/Sign up</button>
-      </form>
-    </div>
 
     <!-- account information -->
     <div class="container text-start py-4">
@@ -72,26 +46,20 @@
                 width="200"
               />
             </div>
-            <h3 class="text-center">Best Cook in the World</h3>
-            <p class="text-center">expert chef</p>
-            <!-- on button press, can update picture, name, or tag/description -->
-            <label for="update-picture">change profile picture: </label>
-            <input
-              type="file"
-              name="update-picture"
-              id="update-picture"
-              accept="application/pdf"
-            />
-            <div class="py-2">
+            <h3 id="display-user" class="text-center">Best Cook in the World</h3>
+            <p id="display-description" class="text-center">expert chef</p>
+            <!-- idk if i want this functionality or not -->
+            <!-- <div class="py-2">
               <label for="update-title">Edit title</label>
               <input type="text" name="update-title" id="update-title" />
-              <label for="update-name">Edit name</label>
+              <label for="update-name">Edit description</label>
               <input type="text" name="update-name" id="update-name" />
             </div>
-            <button type="submit" class="btn">confirm</button>
+            <button class="btn" onclick="updateAccountInfo()">confirm</button> -->
           </div>
 
           <!-- contributed recipes -->
+          <!-- will show recipes contributed by this author -->
           <div>
             <h2 class="py-2">Contributed Recipes</h2>
             <!-- however many recipes author has contributed. if none then shows: upload recipes to view contributions -->
@@ -103,10 +71,10 @@
                     <img
                       src="/assets/foodbaby.jpg"
                       alt="filler for image card"
-                      width="200"
+                      width="300"
                     />
-                    <h4>Recipe title</h4>
-                    <p>recipe description</p>
+                    <h4 class="recipe-title">Recipe title</h4>
+                    <p class="recipe-description">recipe description</p>
                   </a>
                 </div>
                 <div id="recipeCard" class="col">
@@ -115,10 +83,10 @@
                     <img
                       src="/assets/foodbaby.jpg"
                       alt="filler for image card"
-                      width="200"
+                      width="300"
                     />
-                    <h4>Recipe title</h4>
-                    <p>recipe description</p>
+                    <h4 class="recipe-title">Recipe title</h4>
+                    <p class="recipe-description">recipe description</p>
                   </a>
                 </div>
               </div>
@@ -127,6 +95,7 @@
         </div>
 
         <!-- favorited recipes -->
+        <!-- will show favorited recipes dynamically, not the same localStorage recipe -->
         <div class="col bg-light p-4 rounded">
           <h2>My favorited recipes</h2>
           <p>
@@ -135,54 +104,54 @@
           </p>
           <div class="container text-start">
             <div class="row">
-              <div id="recipeCard" class="col text-start">
+              <div id="recipeCard" class="col">
                 <a href="recipePage.html">
                   <!-- filler image -->
                   <img
                     src="/assets/foodbaby.jpg"
                     alt="filler for image card"
-                    width="200"
+                    width="300"
                   />
-                  <h4>Recipe title</h4>
-                  <p>recipe description</p>
+                  <h4 class="recipe-title">Recipe title</h4>
+                  <p class="recipe-description">recipe description</p>
                 </a>
               </div>
-              <div id="recipeCard" class="col text-start">
+              <div id="recipeCard" class="col">
                 <a href="recipePage.html">
                   <!-- filler image -->
                   <img
                     src="/assets/foodbaby.jpg"
                     alt="filler for image card"
-                    width="200"
+                    width="300"
                   />
-                  <h4>Recipe title</h4>
-                  <p>recipe description</p>
+                  <h4 class="recipe-title">Recipe title</h4>
+                  <p class="recipe-description">recipe description</p>
                 </a>
               </div>
             </div>
             <div class="row">
-              <div id="recipeCard" class="col text-start">
+              <div id="recipeCard" class="col">
                 <a href="recipePage.html">
                   <!-- filler image -->
                   <img
                     src="/assets/foodbaby.jpg"
                     alt="filler for image card"
-                    width="200"
+                    width="300"
                   />
-                  <h4>Recipe title</h4>
-                  <p>recipe description</p>
+                  <h4 class="recipe-title">Recipe title</h4>
+                  <p class="recipe-description">recipe description</p>
                 </a>
               </div>
-              <div id="recipeCard" class="col text-start">
+              <div id="recipeCard" class="col">
                 <a href="recipePage.html">
                   <!-- filler image -->
                   <img
                     src="/assets/foodbaby.jpg"
                     alt="filler for image card"
-                    width="200"
+                    width="300"
                   />
-                  <h4>Recipe title</h4>
-                  <p>recipe description</p>
+                  <h4 class="recipe-title">Recipe title</h4>
+                  <p class="recipe-description">recipe description</p>
                 </a>
               </div>
             </div>
@@ -196,9 +165,17 @@
       <a
         href="https://github.com/abbie-barton/startup-cs260.git"
         target="_blank"
+        class="pt-2"
         >My github repository</a
       >
-      <img src="/assets/heart-circle.svg" alt="heart icon" width="50" />
+      <div id="heart-holder" class="text-end">
+        <img
+          id="footer-heart"
+          src="/assets/heart-circle.svg"
+          alt="heart icon"
+          width="50"
+        />
+      </div>
     </footer>
   </body>
 </html>

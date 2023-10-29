@@ -13,6 +13,7 @@
     />
     <link rel="stylesheet" href="../globalStyles.css" />
 
+    <script src="../favorite.js"></script>
     <script src="../displayRecipePage.js"></script>
   </head>
   <body>
@@ -27,7 +28,7 @@
         <li><a href="../index.html">home</a></li>
         <li><a href="recipeCatalog.html">recipe catalog</a></li>
         <li><a href="uploadRecipe.html">upload recipe</a></li>
-        <li><a href="account.html">login/my account</a></li>
+        <li><a href="account.html">my account</a></li>
       </ul>
     </header>
 
@@ -46,6 +47,7 @@
               src="/assets/heart-circle.svg"
               alt="favorite recipe icon"
               width="50"
+              onclick="favoriteRecipe()"
             />
           </div>
         </div>
@@ -126,7 +128,7 @@ Write your comment here</textarea
         target="_blank"
         >My github repository</a
       >
-      <img src="/assets/heart-circle.svg" alt="heart icon" width="50" />
+      <img id="footer-heart" src="/assets/heart-circle.svg" alt="heart icon" width="50" />
 
       <script
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"

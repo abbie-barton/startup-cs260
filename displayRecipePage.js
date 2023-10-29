@@ -97,5 +97,18 @@ const addNewComment = () => {
   location.reload();
 };
 
+const favoriteRecipe = () => {
+    if (localStorage.getItem('favorites') !== null) {
+        // favorites will be an array of recipes
+        const localFavorites = JSON.parse(localStorage.getItem('favorites'));
+        localFavorites.push(JSON.parse(localStorage.getItem('recipe')));
+        localStorage.setItem('favorites', JSON.stringify(localFavorites));
+    } else {
+        const localFavorite = [JSON.parse(localStorage.getItem('recipe'))];
+        localStorage.setItem('favorites', JSON.stringify(localFavorite));
+    }
+    alert('this recipe was saved to your favorites.');
+}
+
 displayRecipePage();
 displayComments();
