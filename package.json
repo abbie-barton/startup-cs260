@@ -1,0 +1,15 @@
+{
+  "name": "startup-cs260",
+  "version": "1.0.0",
+  "description": "When I was young, my diet consisted mostly of mac and cheese, toast, or packaged meals. As I grew up, my family and I realized that eating that way is not very healthy. We started looking for recipes that were healthy and tasted good, and slowly we started building up a binder of family recipes. Now, the binder is broken and greasy and starting to lose pages. I want to make a recipe website for my family so that our collection of recipes is safe and can grow bigger than our binder.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
