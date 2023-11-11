@@ -56,3 +56,11 @@ note - the iframe will be different as a website has different iframe than youtu
 * database - all the recipes are stored in the database - for right now recipe is stored in localStorage with the fields that it will have in the database. Recipes will be dynamically shown both on the recipe page and on the catalog/home/account pages. The user is also stored in the database with its own fields including favorited recipes. Search terms are saved to localStorage and once the database and apis are done, they will filter through the recipes. After a recipe is uploaded the recipeCards will be updated with the uploaded data. 
 * webSocket - using setInterval, webSocket data is shown as it will when it is implemented. When webSocket is actually implemented, it will display a new entry whenever a recipe is favorited by a user. This is shown underneath the heart icon in the footer.
 * application logic - rendering of the recipeCards and the recipePage (recipe and comments) are done dynamically with data from localStorage. Functionality to add a comment and see it immediately posted and functionality to post a recipe are included.
+
+# Service Deliverable
+### backend, endpoints
+* Node.js/Express HTTP service - done
+* Static middleware for frontend - done
+* Calls to third party endpoints - in the home/main page under the picture on the right, a random joke will appear when you refresh the page. This has nothing to do with my website but it looks cool
+* Backend service endpoints - finished endpoints to get and add a comment - should work as usual if you click on a recipe and add a comment. I didn't add the recipes endpoints because I figured it would be much easier to do that when the database is implemented because of the weird way I was using localStorage. 
+* Frontend calls service endpoints - done in displayRecipePage.js, getComments() and saveComments()

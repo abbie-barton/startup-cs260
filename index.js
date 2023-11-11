@@ -27,15 +27,7 @@ apiRouter.post('/comment', (req, res) => {
 });
 
 // send all recipes (or 4 at a time? idk how this works)
-apiRouter.get('recipes', (_req, res) => {
-  res.send(recipes)
-})
-
-apiRouter.post('/recipes', (req, res) => {
-  recipes = addRecipe(req.body, recipes);
-  res.send(recipes);
-})
-
+// recipes api will come when database is implemented - without database it will work weird
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
@@ -46,10 +38,6 @@ app.use((_req, res) => {
     console.log(`Listening on port ${port}`);
   });
 
-
-// updateScores considers a new score for inclusion in the high scores.
-// The high scores are saved in memory and disappear whenever the service is restarted.
-//let comments = [{name: "bobertha", comment: "bobertha thought this yummy in tummy"}, {name: "gerald ford", comment: "this recipe brought me back to life"}];
 let comments = [];
 const updateComments = (newComment, comments) => {
   comments.push(newComment)
@@ -57,9 +45,8 @@ const updateComments = (newComment, comments) => {
   return comments;
 }
 
-let recipes = []
-const addRecipe = (newRecipe, recipes) => {
-  recipes += newRecipe;
+const addRecipe = (newRecipe) => {
+  const recipe = newRecipe;
 
-  return recipes;
+  return recipe;
 }
