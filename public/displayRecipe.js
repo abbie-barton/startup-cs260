@@ -21,7 +21,6 @@ const displayRecipe = (recipes) => {
 const handleRecipeClick = (id) => {
   console.log(id);
   localStorage.setItem('id', id);
-  // window.location.href = `/recipePage.html?id=${id}`;
   window.location.href = `/recipePage.html`;
 }
 

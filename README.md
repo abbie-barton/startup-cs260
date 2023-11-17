@@ -64,3 +64,10 @@ note - the iframe will be different as a website has different iframe than youtu
 * Calls to third party endpoints - in the home/main page under the picture on the right, a random joke will appear when you refresh the page. This has nothing to do with my website but it looks cool
 * Backend service endpoints - finished endpoints to get and add a comment - should work as usual if you click on a recipe and add a comment. I didn't add the recipes endpoints because I figured it would be much easier to do that when the database is implemented because of the weird way I was using localStorage. 
 * Frontend calls service endpoints - done in displayRecipePage.js, getComments() and saveComments()
+
+# Database Deliverable
+### data stored and retrieved from mongoDB
+* MongoDB database created - done
+* Endpoints for mongo - all endpoints used (5 total) retrieve or post data to mongoDB
+* Stores data in mongo - when a recipe is uploaded or comment posted, it is posted to mongoDB. Recipes and comments are retrieved from the database and shown dynamically on the website with a recipe id stored in localStorage
+* note - images for now are static and not stored in the database- I'll figure that out later
