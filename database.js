@@ -26,27 +26,24 @@ const getRecipe = async (id) => {
   if (!recipe) {
     throw new Error(`Recipe with ID ${id} not found.`);
   }
-  console.log(recipe);
   return recipe;
 }
 
 const getRecentRecipes = async () => {
   // get four most recent recipes
-  // createdDate
   const recipes = recipeCollection.find().sort({ createdBy: -1 }).limit(4).toArray((err, documents) => {
     if (err) throw err;
-    console.log(documents);
   })
   return recipes;
 }
 
 const addComment = async(comment, id) => {
-  const filter = { id: {id }};
-  const update = { $push: { comments: {comment} } };
-  const recipe = await recipeCollection.updateOne(filter, update, (err, result) => {
-    if (err) throw err;
-    console.log("document updated successfully" + result)
-  })
+  const filter = { 'recipe.id': id };
+  const update = { $push: { 'recipe.comments': comment } };
+  const recipe = await recipeCollection.updateOne(filter, update);
+  if (recipe.modifiedCount == 1) {
+    console.log("document updated successfully");
+  }
   return recipe;
 }
 

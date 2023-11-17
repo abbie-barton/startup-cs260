@@ -37,6 +37,7 @@ const saveRecipe = () => {
       author: localStorage.getItem("userName"),
       date: dateString,
       createdBy: date,
+      comments: [],
     };
 
     console.log("newRecipe id: " + newRecipe.id);

@@ -74,7 +74,8 @@ const handleTextArea = () => {
 
 const addNewComment = () => {
   const comment = document.getElementById("add-comment");
-  saveComment(localStorage.getItem("userName"), comment.value);
+  console.log('inside addNewComment');
+  saveComment(localStorage.getItem("userName"), comment.value, localStorage.getItem('id'));
 
   const textbox = document.getElementById("add-comment");
   textbox.textContent = "";
@@ -92,26 +93,6 @@ const favoriteRecipe = () => {
     localStorage.setItem("favorites", JSON.stringify(localFavorite));
   }
   alert("this recipe was saved to your favorites.");
-};
-
-const getComments = async (id) => {
-  let comments = [];
-  try {
-    const response = await fetch(`/api/comments?id=${id}`);
-    const data = await response.json();
-
-    localStorage.setItem("comments", JSON.stringify(data));
-    comments = data;
-    console.log(data);
-  } catch {
-    const localComments = localStorage.getItem("comments");
-    if (localComments) {
-      comments = JSON.parse(localComments);
-    }
-    console.error("failed to fetch /comments");
-  }
-
-  displayComments(comments);
 };
 
 const saveComment = async (name, commentText, id) => {
@@ -140,9 +121,9 @@ const getRecipe = async (id) => {
     console.error("failed to fetch /recipe");
   }
 
+  displayComments(recipe.recipe.comments)
   displayRecipePage(recipe.recipe);
 };
 
 // id stored in local storage for current recipe page
 getRecipe(localStorage.getItem("id"));
-//getComments(localStorage.getItem('id'));
