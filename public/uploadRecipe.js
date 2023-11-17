@@ -46,7 +46,6 @@ const saveRecipe = () => {
 
     // give user confirmation - your recipe was uplaoded!
     alert("Your recipe was uploaded successfully.")
-    debugger;
   } else {
     alert("please fill in all fields");
   }

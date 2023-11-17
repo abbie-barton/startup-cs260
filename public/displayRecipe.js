@@ -1,45 +1,41 @@
 const displayRecipe = (recipes) => {
-    // when the DOM is loaded, check if there is a recipe in localStorage. 
-    // if there is, replace recipeCard content with localStorage.recipe content
-  document.addEventListener("DOMContentLoaded", () => {
-    if (localStorage.getItem("recipe") !== null) {
-      const localRecipe = JSON.parse(localStorage.getItem("recipe"));
-      // images will not be changed for now since localStorage can only hold strings, not files
-      const recipeTitleElements = document.querySelectorAll(".recipe-title");
-      recipeTitleElements.forEach((element) => {
-        element.textContent = localRecipe.title;
-      });
-      const recipeDescriptionElements = document.querySelectorAll(
-        ".recipe-description"
-      );
-      recipeDescriptionElements.forEach((element) => {
-        element.textContent = localRecipe.description;
-      });
-    }
-  });
+    const recipeContainer = document.getElementById("recent-recipes");
+    console.log('done');
+    const recipeHTMLArray = recipes.map(
+      (recipe) => `
+        <div id="recipeCard" class="col">
+          <a href="recipePage.html">
+            <!-- filler image -->
+              <img
+                src="/assets/foodbaby.jpg"
+                alt="filler for image card"
+                width="300"
+              />
+            <h4 class="recipe-title">${recipe.recipe.title}</h4>
+            <p class="recipe-description">${recipe.recipe.description}</p>
+          </a>
+        </div>
+    `);
+    recipeContainer.innerHTML = recipeHTMLArray.join("");
 };
 
 const saveSortOptions = () => {
-    const select = document.getElementById("search-select");
-    const searchbar = document.getElementById("searchbox");
+  const select = document.getElementById("search-select");
+  const searchbar = document.getElementById("searchbox");
 
-    localStorage.setItem('select-term', select.value);
-    localStorage.setItem('search-term', searchbar.value);
-}
+  localStorage.setItem("select-term", select.value);
+  localStorage.setItem("search-term", searchbar.value);
+};
 
 const getRecentRecipes = async () => {
-  let recipes;
   try {
     const response = await fetch("/api/recent-recipes");
     const data = await response.json();
-    // what does recipes look like?
-    recipes = data;
     console.log(data);
+    displayRecipe(data);
   } catch {
-    console.error('failed to fetch /recent-recipes');
+    console.error("failed to fetch /recent-recipes");
   }
-
-  //displayRecipe(recipes);
 };
 
-getRecentRecipes()
+getRecentRecipes();
