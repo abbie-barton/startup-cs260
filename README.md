@@ -71,3 +71,4 @@ note - the iframe will be different as a website has different iframe than youtu
 * Endpoints for mongo - all endpoints used (5 total) retrieve or post data to mongoDB
 * Stores data in mongo - when a recipe is uploaded or comment posted, it is posted to mongoDB. Recipes and comments are retrieved from the database and shown dynamically on the website with a recipe id stored in localStorage
 * note - images for now are static and not stored in the database- I'll figure that out later
+* note 2 - recipes shown in my account page are not dynamic - when login is implemented, recipes will be stored under the user so will have different functionality
