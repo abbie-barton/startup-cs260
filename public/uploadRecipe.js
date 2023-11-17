@@ -22,10 +22,11 @@ const saveRecipe = () => {
     const parsedInstructions = instructions.value.split("\n");
 
     const date = new Date();
-    const dateString = date.getMonth + "/" + date.getDay() + "/" + date.getFullYear();
+    const dateString = date.getMonth() + "/" + date.getDay() + "/" + date.getFullYear();
 
     const newRecipe = {
       // since localStorage can only hold strings, image for now will only hold file path and will not be displayed
+      id: 1,
       image: recipePicture.value,
       title: title.value,
       servings: servings.value,
@@ -35,13 +36,17 @@ const saveRecipe = () => {
       instructions: parsedInstructions,
       author: localStorage.getItem("userName"),
       date: dateString,
+      createdBy: date,
     };
 
     // for right now put it into local storage, later will post it into the database
     localStorage.setItem("recipe", JSON.stringify(newRecipe));
 
+    postRecipe(newRecipe);
+
     // give user confirmation - your recipe was uplaoded!
     alert("Your recipe was uploaded successfully.")
+    debugger;
   } else {
     alert("please fill in all fields");
   }
@@ -56,3 +61,17 @@ const handleTextBox = (isIngredientsBox) => {
     textbox.textContent = "";
   }
 };
+
+const postRecipe = async (recipe) => {
+  try {
+    const response = await fetch(`/api/post-recipe?id=${recipe.id}`, {
+      method: 'POST',
+      headers: {'content-type': 'application/json'},
+      body: JSON.stringify({recipe}),
+    });
+    const postedRecipe = await response.json();
+    console.log(postedRecipe)
+  } catch {
+    console.error('error saving comment /comment');
+  }
+}

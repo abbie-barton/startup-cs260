@@ -38,16 +38,21 @@ apiRouter.get('/recipe', async (req, res) => {
   res.json(recipe);
 });
 
+// get recent recipes (4)
+apiRouter.get('/recent-recipes', async (req, res) => {
+  const recipes = await db.getRecentRecipes();
+  res.json(recipes);
+})
+
 // post recipe
 apiRouter.post('/post-recipe', async (req, res) => {
+  console.log('inside the post recipe api call');
+  console.log(req.body);
   const id = req.query.id;
-  db.addRecipe(req.body, id);
+  db.addRecipe(req.body);
   const recipe = await db.getRecipe(id);
   res.send(recipe);
 })
-
-// send all recipes (or 4 at a time? idk how this works)
-// recipes api will come when database is implemented - without database it will work weird
 
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {

@@ -15,15 +15,26 @@ const recipeCollection = db.collection('recipe');
   process.exit(1);
 });
 
-async function addRecipe(recipe) {
+const addRecipe = async (recipe) => {
   const result = await recipeCollection.insertOne(recipe);
+  console.log(result);
   return result;
 }
 
-function getRecipe(id) {
+const getRecipe = async (id) => {
   const query = { id: {id} };
   const recipe = recipeCollection.find(query);
   return recipe;
+}
+
+const getRecentRecipes = async () => {
+  // get four most recent recipes
+  // createdDate
+  const recipes = recipeCollection.find().sort({ createdBy: -1 }).limit(4).toArray((err, documents) => {
+    if (err) throw err;
+    console.log(documents);
+  })
+  return recipes;
 }
 
 const addComment = async(comment, id) => {
@@ -42,4 +53,4 @@ const getComments = (id) => {
   return recipe.comments;
 }
 
-module.exports = { addRecipe, getRecipe, addComment, getComments };
+module.exports = { addRecipe, getRecipe, getRecentRecipes, addComment, getComments };

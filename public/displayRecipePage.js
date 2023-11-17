@@ -136,6 +136,27 @@ const saveComment = async (name, commentText, id) => {
   }
 }
 
-displayRecipePage();
-getComments();
+const getRecipe = async (id) => {
+  let recipe;
+  try {
+    const response = await fetch(`/api/recipe?id=${id}`);
+    const data = await response.json();
 
+    localStorage.setItem("recipe", JSON.stringify(data));
+    recipe = data;
+    console.log(data);
+  } catch {
+    const localRecipe = localStorage.getItem("recipe");
+    if (localRecipe) {
+      recipe = JSON.parse(localComments);
+    } else {
+      console.error("failed to fetch /comments");
+    }
+  }
+
+  displayRecipePage(recipe);
+};
+
+// id stored in local storage for current recipe page
+getRecipe(localStorage.getItem('id'));
+getComments(localStorage.getItem('id'));

@@ -1,4 +1,4 @@
-const displayRecipe = () => {
+const displayRecipe = (recipes) => {
     // when the DOM is loaded, check if there is a recipe in localStorage. 
     // if there is, replace recipeCard content with localStorage.recipe content
   document.addEventListener("DOMContentLoaded", () => {
@@ -27,24 +27,19 @@ const saveSortOptions = () => {
     localStorage.setItem('search-term', searchbar.value);
 }
 
-const getRecipe = async () => {
+const getRecentRecipes = async () => {
+  let recipes;
   try {
-    const response = await fetch("/api/recipe");
+    const response = await fetch("/api/recent-recipes");
     const data = await response.json();
-
-    localStorage.setItem("comments", JSON.stringify(data));
-    comments = data;
+    // what does recipes look like?
+    recipes = data;
     console.log(data);
   } catch {
-    
-    const localComments = localStorage.getItem("comments");
-    if (localComments) {
-      comments = JSON.parse(localComments);
-    }
-    console.error("failed to fetch /comments");
+    console.error('failed to fetch /recent-recipes');
   }
 
-  displayComments(comments);
+  //displayRecipe(recipes);
 };
 
-displayRecipe();
+getRecentRecipes()
