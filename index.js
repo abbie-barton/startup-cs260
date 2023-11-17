@@ -34,7 +34,7 @@ apiRouter.post('/comment', async (req, res) => {
 // get recipe
 apiRouter.get('/recipe', async (req, res) => {
   const id = req.query.id;
-  const recipe = await db.addRecipe(id);
+  const recipe = await db.getRecipe(id);
   res.json(recipe);
 });
 
@@ -46,8 +46,6 @@ apiRouter.get('/recent-recipes', async (req, res) => {
 
 // post recipe
 apiRouter.post('/post-recipe', async (req, res) => {
-  console.log('inside the post recipe api call');
-  console.log(req.body);
   const id = req.query.id;
   db.addRecipe(req.body);
   const recipe = await db.getRecipe(id);
@@ -68,10 +66,4 @@ const updateComments = (newComment, comments) => {
   comments.push(newComment)
 
   return comments;
-}
-
-const addRecipe = (newRecipe) => {
-  const recipe = newRecipe;
-
-  return recipe;
 }

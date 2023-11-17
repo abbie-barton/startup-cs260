@@ -26,7 +26,7 @@ const saveRecipe = () => {
 
     const newRecipe = {
       // since localStorage can only hold strings, image for now will only hold file path and will not be displayed
-      id: 1,
+      id: generateRandomId(),
       image: recipePicture.value,
       title: title.value,
       servings: servings.value,
@@ -38,6 +38,8 @@ const saveRecipe = () => {
       date: dateString,
       createdBy: date,
     };
+
+    console.log("newRecipe id: " + newRecipe.id);
 
     // for right now put it into local storage, later will post it into the database
     localStorage.setItem("recipe", JSON.stringify(newRecipe));
@@ -73,4 +75,11 @@ const postRecipe = async (recipe) => {
   } catch {
     console.error('error saving comment /comment');
   }
+}
+
+const generateRandomId = () => {
+  const timestamp = new Date().getTime().toString(16); // Convert timestamp to hexadecimal
+  const randomPart = Math.random().toString(16).substring(2); // Random number, removing '0.' at the beginning
+  console.log(`${timestamp}-${randomPart}`)
+  return `${timestamp}-${randomPart}`;
 }

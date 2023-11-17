@@ -17,13 +17,16 @@ const recipeCollection = db.collection('recipe');
 
 const addRecipe = async (recipe) => {
   const result = await recipeCollection.insertOne(recipe);
-  console.log(result);
   return result;
 }
 
 const getRecipe = async (id) => {
-  const query = { id: {id} };
-  const recipe = recipeCollection.find(query);
+  const query = { 'recipe.id': id };
+  const recipe = await recipeCollection.findOne(query);
+  if (!recipe) {
+    throw new Error(`Recipe with ID ${id} not found.`);
+  }
+  console.log(recipe);
   return recipe;
 }
 

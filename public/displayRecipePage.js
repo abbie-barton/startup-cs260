@@ -1,37 +1,30 @@
-const displayRecipePage = () => {
-  // when the DOM is loaded, check if there is a recipe in localStorage.
-  // if there is, replace recipeCard content with localStorage.recipe content
-  document.addEventListener("DOMContentLoaded", () => {
-    if (localStorage.getItem("recipe") !== null) {
-      const localRecipe = JSON.parse(localStorage.getItem("recipe"));
-      // images will not be changed for now since localStorage can only hold strings, not files
-      const title = document.getElementById("title");
-      const author = document.getElementById("author");
-      const date = document.getElementById("date");
-      const description = document.getElementById("description");
-      const time = document.getElementById("time");
-      const servings = document.getElementById("servings");
-      // ul elements
-      const ingredients = document.getElementById("ingredients");
-      const directions = document.getElementById("directions");
+const displayRecipePage = (recipe) => {
+  // images will not be changed for now since I can't figure out how to do files in mongodb
+  const title = document.getElementById("title");
+  const author = document.getElementById("author");
+  const date = document.getElementById("date");
+  const description = document.getElementById("description");
+  const time = document.getElementById("time");
+  const servings = document.getElementById("servings");
+  // ul elements
+  const ingredients = document.getElementById("ingredients");
+  const directions = document.getElementById("directions");
 
-      title.textContent = localRecipe.title;
-      author.textContent = "author: " + localRecipe.author;
-      date.textContent = "posted on: " + localRecipe.date;
-      description.textContent = localRecipe.description;
-      time.textContent = "cook time: " + localRecipe.time + " minutes";
-      servings.textContent = "servings: " + localRecipe.servings;
-      // map li elements within ul
-      const newIngredientsList = localRecipe.ingredients
-        .map((item) => `<li>${item}</li>`)
-        .join("");
-      ingredients.innerHTML = newIngredientsList;
-      const newDirectionsList = localRecipe.instructions
-        .map((item) => `<li>${item}</li>`)
-        .join("");
-      directions.innerHTML = newDirectionsList;
-    }
-  });
+  title.textContent = recipe.title;
+  author.textContent = "author: " + recipe.author;
+  date.textContent = "posted on: " + recipe.date;
+  description.textContent = recipe.description;
+  time.textContent = "cook time: " + recipe.time + " minutes";
+  servings.textContent = "servings: " + recipe.servings;
+  // map li elements within ul
+  const newIngredientsList = recipe.ingredients
+    .map((item) => `<li>${item}</li>`)
+    .join("");
+  ingredients.innerHTML = newIngredientsList;
+  const newDirectionsList = recipe.instructions
+    .map((item) => `<li>${item}</li>`)
+    .join("");
+  directions.innerHTML = newDirectionsList;
 };
 
 const displayComments = (comments) => {
@@ -42,7 +35,7 @@ const displayComments = (comments) => {
     console.log(item);
     console.log(item.name, item.commentText);
     createCommentCard(item.name, item.commentText);
-  })
+  });
 };
 
 const createCommentCard = (name, comment) => {
@@ -81,7 +74,7 @@ const handleTextArea = () => {
 
 const addNewComment = () => {
   const comment = document.getElementById("add-comment");
-  saveComment(localStorage.getItem('userName'), comment.value);
+  saveComment(localStorage.getItem("userName"), comment.value);
 
   const textbox = document.getElementById("add-comment");
   textbox.textContent = "";
@@ -111,7 +104,6 @@ const getComments = async (id) => {
     comments = data;
     console.log(data);
   } catch {
-    
     const localComments = localStorage.getItem("comments");
     if (localComments) {
       comments = JSON.parse(localComments);
@@ -125,16 +117,16 @@ const getComments = async (id) => {
 const saveComment = async (name, commentText, id) => {
   try {
     const response = await fetch(`/api/comment?id=${id}`, {
-      method: 'POST',
-      headers: {'content-type': 'application/json'},
-      body: JSON.stringify({name, commentText}),
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ name, commentText }),
     });
     const comment = await response.json();
-    console.log(comment)
+    console.log(comment);
   } catch {
-    console.error('error saving comment /comment');
+    console.error("error saving comment /comment");
   }
-}
+};
 
 const getRecipe = async (id) => {
   let recipe;
@@ -144,19 +136,13 @@ const getRecipe = async (id) => {
 
     localStorage.setItem("recipe", JSON.stringify(data));
     recipe = data;
-    console.log(data);
   } catch {
-    const localRecipe = localStorage.getItem("recipe");
-    if (localRecipe) {
-      recipe = JSON.parse(localComments);
-    } else {
-      console.error("failed to fetch /comments");
-    }
+    console.error("failed to fetch /recipe");
   }
 
-  displayRecipePage(recipe);
+  displayRecipePage(recipe.recipe);
 };
 
 // id stored in local storage for current recipe page
-getRecipe(localStorage.getItem('id'));
-getComments(localStorage.getItem('id'));
+getRecipe(localStorage.getItem("id"));
+//getComments(localStorage.getItem('id'));
