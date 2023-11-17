@@ -101,10 +101,10 @@ const favoriteRecipe = () => {
   alert("this recipe was saved to your favorites.");
 };
 
-const getComments = async () => {
+const getComments = async (id) => {
   let comments = [];
   try {
-    const response = await fetch("/api/comments");
+    const response = await fetch(`/api/comments?id=${id}`);
     const data = await response.json();
 
     localStorage.setItem("comments", JSON.stringify(data));
@@ -122,9 +122,9 @@ const getComments = async () => {
   displayComments(comments);
 };
 
-const saveComment = async (name, commentText) => {
+const saveComment = async (name, commentText, id) => {
   try {
-    const response = await fetch('/api/comment', {
+    const response = await fetch(`/api/comment?id=${id}`, {
       method: 'POST',
       headers: {'content-type': 'application/json'},
       body: JSON.stringify({name, commentText}),

@@ -27,4 +27,24 @@ const saveSortOptions = () => {
     localStorage.setItem('search-term', searchbar.value);
 }
 
+const getRecipe = async () => {
+  try {
+    const response = await fetch("/api/recipe");
+    const data = await response.json();
+
+    localStorage.setItem("comments", JSON.stringify(data));
+    comments = data;
+    console.log(data);
+  } catch {
+    
+    const localComments = localStorage.getItem("comments");
+    if (localComments) {
+      comments = JSON.parse(localComments);
+    }
+    console.error("failed to fetch /comments");
+  }
+
+  displayComments(comments);
+};
+
 displayRecipe();

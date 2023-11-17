@@ -29,10 +29,11 @@ function getRecipe(id) {
 const addComment = async(comment, id) => {
   const filter = { id: {id }};
   const update = { $push: { comments: {comment} } };
-  recipeCollection.updateOne(filter, update, (err, result) => {
+  const recipe = await recipeCollection.updateOne(filter, update, (err, result) => {
     if (err) throw err;
-    console.log("document updated successfully")
+    console.log("document updated successfully" + result)
   })
+  return recipe;
 }
 
 const getComments = (id) => {

@@ -1,28 +1,4 @@
-const { MongoClient } = require('mongodb');
-const config = require('./dbConfig.json');
-
-const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}/?retryWrites=true&w=majority`
-;
-
-// test mongo connection
-const client = new MongoClient(url);
-
-const collection = client.db('rental').collection('house');
-const dbWait = async () => {
-  const house = {
-    name: 'Beachfront views',
-    summary: 'From your bedroom to the beach, no shoes required',
-    property_type: 'Condo',
-    beds: 1,
-  };
-  await collection.insertOne(house);
-  
-  const cursor = collection.find();
-  const rentals = await cursor.toArray();
-  rentals.forEach((i) => console.log(i));
-}
-dbWait()
-
+const db = require('./database.js');
 const express = require('express');
 const app = express();
 
@@ -41,15 +17,34 @@ app.use(`/api`, apiRouter);
 
 
 // get comments for a recipe (will be all the same for now)
-apiRouter.get('/comments', (_req, res) => {
+apiRouter.get('/comments', async (req, res) => {
+  const id = req.query.id;
+  const comments = await db.getComments(id);
   res.json(comments);
 });
 
 // post comment for a recipe (all in the same array)
-apiRouter.post('/comment', (req, res) => {
-  scores = updateComments(req.body, comments);
-  res.send(scores);
+apiRouter.post('/comment', async (req, res) => {
+  const id = req.query.id;
+  db.addComment(req.body, id);
+  const comments = await db.getComments(id)
+  res.send(comments);
 });
+
+// get recipe
+apiRouter.get('/recipe', async (req, res) => {
+  const id = req.query.id;
+  const recipe = await db.addRecipe(id);
+  res.json(recipe);
+});
+
+// post recipe
+apiRouter.post('/post-recipe', async (req, res) => {
+  const id = req.query.id;
+  db.addRecipe(req.body, id);
+  const recipe = await db.getRecipe(id);
+  res.send(recipe);
+})
 
 // send all recipes (or 4 at a time? idk how this works)
 // recipes api will come when database is implemented - without database it will work weird
