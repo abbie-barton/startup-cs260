@@ -31,7 +31,7 @@ apiRouter.use(secureApiRouter);
 
 secureApiRouter.use(async (req, res, next) => {
   authToken = req.cookies[authCookieName];
-  const user = await DB.getUserByToken(authToken);
+  const user = await db.getUserByToken(authToken);
   if (user) {
     next();
   } else {
@@ -49,17 +49,62 @@ const setAuthCookie = (res, authToken) => {
   });
 }
 
+// CreateAuth token for a new user
+apiRouter.post('/auth/create', async (req, res) => {
+  if (await db.getUser(req.body.email)) {
+    res.status(409).send({ msg: 'Existing user' });
+  } else {
+    const user = await db.createUser(req.body.email, req.body.password);
+
+    // Set the cookie
+    setAuthCookie(res, user.token);
+
+    res.send({
+      id: user._id,
+    });
+  }
+});
+
+// GetAuth token for the provided credentials
+apiRouter.post('/auth/login', async (req, res) => {
+  const user = await db.getUser(req.body.email);
+  if (user) {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      setAuthCookie(res, user.token);
+      res.send({ id: user._id });
+      return;
+    }
+  }
+  res.status(401).send({ msg: 'Unauthorized' });
+});
+
+// DeleteAuth token if stored in cookie
+apiRouter.delete('/auth/logout', (_req, res) => {
+  res.clearCookie(authCookieName);
+  res.status(204).end();
+});
+
+// GetUser returns information about a user
+apiRouter.get('/user/:email', async (req, res) => {
+  const user = await db.getUser(req.params.email);
+  if (user) {
+    const token = req?.cookies.token;
+    res.send({ email: user.email, authenticated: token === user.token });
+    return;
+  }
+  res.status(404).send({ msg: 'Unknown' });
+});
 
 // service endpoints
 // get comments for a recipe (will be all the same for now)
-apiRouter.get('/comments', async (req, res) => {
+secureApiRouter.get('/comments', async (req, res) => {
   const id = req.query.id;
   const comments = await db.getComments(id);
   res.json(comments);
 });
 
 // post comment for a recipe (all in the same array)
-apiRouter.post('/comment', async (req, res) => {
+secureApiRouter.post('/comment', async (req, res) => {
   const id = req.query.id;
   db.addComment(req.body, id);
   const comments = await db.getComments(id)
@@ -67,20 +112,20 @@ apiRouter.post('/comment', async (req, res) => {
 });
 
 // get recipe
-apiRouter.get('/recipe', async (req, res) => {
+secureApiRouter.get('/recipe', async (req, res) => {
   const id = req.query.id;
   const recipe = await db.getRecipe(id);
   res.json(recipe);
 });
 
 // get recent recipes (4)
-apiRouter.get('/recent-recipes', async (req, res) => {
+secureApiRouter.get('/recent-recipes', async (req, res) => {
   const recipes = await db.getRecentRecipes();
   res.json(recipes);
 })
 
 // post recipe
-apiRouter.post('/post-recipe', async (req, res) => {
+secureApiRouter.post('/post-recipe', async (req, res) => {
   const id = req.query.id;
   db.addRecipe(req.body);
   const recipe = await db.getRecipe(id);
