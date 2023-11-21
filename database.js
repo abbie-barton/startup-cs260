@@ -1,10 +1,13 @@
 const { MongoClient } = require('mongodb');
 const config = require('./dbConfig.json');
+const bcrypt = require('bcrypt');
+const uuid = require('uuid');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
 const db = client.db('makeitgood');
 const recipeCollection = db.collection('recipe');
+const userCollection = db.collection('user');
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -14,6 +17,30 @@ const recipeCollection = db.collection('recipe');
   console.log(`Unable to connect to database with ${url} because ${ex.message}`);
   process.exit(1);
 });
+
+// user database functions
+const getUser = (email) => {
+  return userCollection.findOne({ email: email });
+}
+
+const getUserByToken = (token) => {
+  return userCollection.findOne({ token: token });
+}
+
+const createUser = async (email, password) => {
+  // Hash the password before we insert it into the database
+  const passwordHash = await bcrypt.hash(password, 10);
+
+  const user = {
+    email: email,
+    password: passwordHash,
+    token: uuid.v4(),
+  };
+  await userCollection.insertOne(user);
+
+  return user;
+}
+
 
 const addRecipe = async (recipe) => {
   const result = await recipeCollection.insertOne(recipe);
@@ -53,4 +80,4 @@ const getComments = (id) => {
   return recipe.comments;
 }
 
-module.exports = { addRecipe, getRecipe, getRecentRecipes, addComment, getComments };
+module.exports = { addRecipe, getRecipe, getRecentRecipes, addComment, getComments, getUser, getUserByToken, createUser };
