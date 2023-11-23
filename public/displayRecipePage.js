@@ -94,7 +94,7 @@ const saveFavorite = async (userName, recipe) => {
       body: JSON.stringify({ userName, recipe }),
     });
     const user = await response.json();
-    console.log(user);
+    return user;
   } catch {
     console.error('error saving favorite recipe /favorited-recipe');
   }
@@ -131,7 +131,6 @@ const getRecipe = async (id) => {
 };
 
 const getUser = async (userName) => {
-  // See if we have a user with the given email.
   const response = await fetch(`/api/user/${userName}`);
   if (response.status === 200) {
     return response.json();

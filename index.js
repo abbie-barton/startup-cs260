@@ -134,8 +134,9 @@ secureApiRouter.get('/recent-recipes', async (req, res) => {
 
 // post recipe
 secureApiRouter.post('/post-recipe', async (req, res) => {
+  //debugger;
   const id = req.query.id;
-  db.addRecipe(req.body);
+  await db.addRecipe(req.body);
   const recipe = await db.getRecipe(id);
   res.send(recipe);
 })

@@ -40,15 +40,12 @@ const saveRecipe = () => {
       comments: [],
     };
 
-    console.log("newRecipe id: " + newRecipe.id);
-
-    // for right now put it into local storage, later will post it into the database
-    localStorage.setItem("recipe", JSON.stringify(newRecipe));
-
     postRecipe(newRecipe);
+    saveContribution(newRecipe.author, newRecipe);
 
-    // give user confirmation - your recipe was uplaoded!
+    // give user confirmation - your recipe was uploaded!
     alert("Your recipe was uploaded successfully.")
+    location.reload();
   } else {
     alert("please fill in all fields");
   }
@@ -83,4 +80,17 @@ const generateRandomId = () => {
   const randomPart = Math.random().toString(16).substring(2); // Random number, removing '0.' at the beginning
   console.log(`${timestamp}-${randomPart}`)
   return `${timestamp}-${randomPart}`;
+}
+
+const saveContribution = async (userName, recipe) => {
+  try {
+    const response = await fetch(`/api/contributed-recipe`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ userName, recipe }),
+    });
+    return response.json();
+  } catch {
+    console.error('error saving contribution /contributed-recipe');
+  }
 }

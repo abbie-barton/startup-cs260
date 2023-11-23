@@ -31,7 +31,6 @@ const getUser = async (userName) => {
 const getUserByToken = async (token) => {
   const query = { 'token': token };
   const user = await userCollection.findOne(query);
-  console.log(user);
   if (!user) {
     throw new Error(`User with token ${token} not found.`);
   }
@@ -72,7 +71,7 @@ const getRecipe = async (id) => {
 
 const getRecentRecipes = async () => {
   // get four most recent recipes
-  const recipes = recipeCollection.find().sort({ createdBy: -1 }).limit(4).toArray((err, documents) => {
+  const recipes = recipeCollection.find().sort({ createdBy: -1 }).limit(6).toArray((err, documents) => {
     if (err) throw err;
   })
   return recipes;
