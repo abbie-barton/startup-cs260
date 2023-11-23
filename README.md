@@ -72,3 +72,11 @@ note - the iframe will be different as a website has different iframe than youtu
 * Stores data in mongo - when a recipe is uploaded or comment posted, it is posted to mongoDB. Recipes and comments are retrieved from the database and shown dynamically on the website with a recipe id stored in localStorage
 * note - images for now are static and not stored in the database- I'll figure that out later
 * note 2 - recipes shown in my account page are not dynamic - when login is implemented, recipes will be stored under the user so will have different functionality
+
+# Login Deliverable
+### users and user data stored in database
+* User registration - creates a new user in the database
+* Existing user - can login with existing credentials
+* Use MongoDB to store users - stores user, favorited recipes, and contributed recipes
+* Restricted Functionality - the whole website cannot be accessed unless you are logged in
+* Lots of work was done on the 'my account' page - it shows favorited/contributed recipes dynamically and has a logout function
