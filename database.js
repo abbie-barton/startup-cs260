@@ -19,22 +19,36 @@ const userCollection = db.collection('user');
 });
 
 // user database functions
-const getUser = (email) => {
-  return userCollection.findOne({ email: email });
+const getUser = async (userName) => {
+  const query = { 'userName': userName };
+  const user = await userCollection.findOne(query);
+  if (!user) {
+    throw new Error(`User with username ${userName} not found.`);
+  }
+  return user;
 }
 
-const getUserByToken = (token) => {
-  return userCollection.findOne({ token: token });
+const getUserByToken = async (token) => {
+  const query = { 'token': token };
+  const user = await userCollection.findOne(query);
+  console.log(user);
+  if (!user) {
+    throw new Error(`User with token ${token} not found.`);
+  }
+  return user;
 }
 
-const createUser = async (email, password) => {
+const createUser = async (userName, password) => {
   // Hash the password before we insert it into the database
   const passwordHash = await bcrypt.hash(password, 10);
 
   const user = {
-    email: email,
+    userName: userName,
     password: passwordHash,
     token: uuid.v4(),
+    // these will be arrays of recipe objects
+    contributedRecipes: [],
+    favoritedRecipes: [],
   };
   await userCollection.insertOne(user);
 
@@ -80,4 +94,24 @@ const getComments = (id) => {
   return recipe.comments;
 }
 
-module.exports = { addRecipe, getRecipe, getRecentRecipes, addComment, getComments, getUser, getUserByToken, createUser };
+const addFavoriteRecipe = async (userName, recipe) => {
+  const filter = { 'userName': userName };
+  const update = { $push: { 'favoritedRecipes': recipe } };
+  const user = await userCollection.updateOne(filter, update);
+  if (user.modifiedCount == 1) {
+    console.log('favorites updated successfully');
+  }
+  return user;
+}
+
+const addContributedRecipe = async (userName, recipe) => {
+  const filter = { 'userName': userName };
+  const update = { $push: { 'contributedRecipes': recipe } };
+  const user = await userCollection.updateOne(filter, update);
+  if (user.modifiedCount == 1) {
+    console.log('contributions updated successfully');
+  }
+  return user;
+}
+
+module.exports = { addRecipe, getRecipe, getRecentRecipes, addComment, getComments, getUser, getUserByToken, createUser, addFavoriteRecipe, addContributedRecipe };

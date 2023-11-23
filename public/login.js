@@ -34,7 +34,7 @@ const loginOrCreate = async (endpoint) => {
   const password = document.getElementById("password")?.value;
   const response = await fetch(endpoint, {
     method: "post",
-    body: JSON.stringify({ email: userName, password: password }),
+    body: JSON.stringify({ userName: userName, password: password }),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
     },
@@ -50,9 +50,9 @@ const loginOrCreate = async (endpoint) => {
   }
 }
 
-const getUser = async (email) => {
+const getUser = async (userName) => {
   // See if we have a user with the given email.
-  const response = await fetch(`/api/user/${email}`);
+  const response = await fetch(`/api/user/${userName}`);
   if (response.status === 200) {
     return response.json();
   }

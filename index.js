@@ -80,6 +80,15 @@ apiRouter.get('/user/:userName', async (req, res) => {
   res.status(404).send({ msg: 'Unknown' });
 });
 
+apiRouter.get('/user/full/:userName', async (req, res) => {
+  const user = await db.getUser(req.params.userName);
+  if (user) {
+    res.send({user});
+    return;
+  }
+  res.status(404).send({ msg: 'Could not find user' })
+})
+
 // secureApiRouter verifies credentials for endpoints
 var secureApiRouter = express.Router();
 apiRouter.use(secureApiRouter);
@@ -129,6 +138,20 @@ secureApiRouter.post('/post-recipe', async (req, res) => {
   db.addRecipe(req.body);
   const recipe = await db.getRecipe(id);
   res.send(recipe);
+})
+
+// post favorited recipe
+secureApiRouter.post('/favorited-recipe', async(req, res) => {
+  db.addFavoriteRecipe(req.body.userName, req.body.recipe);
+  const user = await db.getUser(req.body.userName);
+  res.send(user);
+})
+
+// post contributed recipe
+secureApiRouter.post('/contributed-recipe', async(req, res) => {
+  db.addContributedRecipe(req.body.userName, req.body.recipe);
+  const user = await db.getUser(req.body.userName);
+  res.send(user);
 })
 
 // Return the application's default page if the path is unknown

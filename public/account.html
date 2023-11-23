@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="../globalStyles.css" />
 
     <script src="favorite.js"></script>
-    <script src="account.js"></script>
+    
   </head>
   <body>
     <!-- navbar -->
@@ -57,31 +57,8 @@
             <h2 class="py-2">Contributed Recipes</h2>
             <!-- however many recipes author has contributed. if none then shows: upload recipes to view contributions -->
             <div class="container text-start">
-              <div class="row">
-                <div id="recipeCard" class="col">
-                  <a href="recipePage.html">
-                    <!-- filler image -->
-                    <img
-                      src="/assets/foodbaby.jpg"
-                      alt="filler for image card"
-                      width="300"
-                    />
-                    <h4 class="recipe-title">Recipe title</h4>
-                    <p class="recipe-description">recipe description</p>
-                  </a>
-                </div>
-                <div id="recipeCard" class="col">
-                  <a href="recipePage.html">
-                    <!-- filler image -->
-                    <img
-                      src="/assets/foodbaby.jpg"
-                      alt="filler for image card"
-                      width="300"
-                    />
-                    <h4 class="recipe-title">Recipe title</h4>
-                    <p class="recipe-description">recipe description</p>
-                  </a>
-                </div>
+              <div id="contributed-recipes" class="row">
+                <p class="pt-3">You don't have any contributed recipes yet!</p>
               </div>
             </div>
           </div>
@@ -96,57 +73,8 @@
             back to it later!
           </p>
           <div class="container text-start">
-            <div class="row">
-              <div id="recipeCard" class="col">
-                <a href="recipePage.html">
-                  <!-- filler image -->
-                  <img
-                    src="/assets/foodbaby.jpg"
-                    alt="filler for image card"
-                    width="300"
-                  />
-                  <h4 class="recipe-title">Recipe title</h4>
-                  <p class="recipe-description">recipe description</p>
-                </a>
-              </div>
-              <div id="recipeCard" class="col">
-                <a href="recipePage.html">
-                  <!-- filler image -->
-                  <img
-                    src="/assets/foodbaby.jpg"
-                    alt="filler for image card"
-                    width="300"
-                  />
-                  <h4 class="recipe-title">Recipe title</h4>
-                  <p class="recipe-description">recipe description</p>
-                </a>
-              </div>
-            </div>
-            <div class="row">
-              <div id="recipeCard" class="col">
-                <a href="recipePage.html">
-                  <!-- filler image -->
-                  <img
-                    src="/assets/foodbaby.jpg"
-                    alt="filler for image card"
-                    width="300"
-                  />
-                  <h4 class="recipe-title">Recipe title</h4>
-                  <p class="recipe-description">recipe description</p>
-                </a>
-              </div>
-              <div id="recipeCard" class="col">
-                <a href="recipePage.html">
-                  <!-- filler image -->
-                  <img
-                    src="/assets/foodbaby.jpg"
-                    alt="filler for image card"
-                    width="300"
-                  />
-                  <h4 class="recipe-title">Recipe title</h4>
-                  <p class="recipe-description">recipe description</p>
-                </a>
-              </div>
+            <div id="favorited-recipes" class="row">
+              <p class="pt-3">You don't have any favorited recipes yet!</p>
             </div>
           </div>
         </div>
@@ -170,5 +98,7 @@
         />
       </div>
     </footer>
+
+    <script src="account.js"></script>
   </body>
 </html>

@@ -32,8 +32,6 @@ const displayComments = (comments) => {
     comments.forEach((item) => createCommentCard(item.name, item.commentText));
   });
   comments.forEach((item) => {
-    console.log(item);
-    console.log(item.name, item.commentText);
     createCommentCard(item.name, item.commentText);
   });
 };
@@ -74,26 +72,32 @@ const handleTextArea = () => {
 
 const addNewComment = () => {
   const comment = document.getElementById("add-comment");
-  console.log('inside addNewComment');
-  saveComment(localStorage.getItem("userName"), comment.value, localStorage.getItem('id'));
+  saveComment(localStorage.getItem("userName"), comment.value, localStorage.getItem("id"));
 
   const textbox = document.getElementById("add-comment");
   textbox.textContent = "";
   location.reload();
 };
 
-const favoriteRecipe = () => {
-  if (localStorage.getItem("favorites") !== null) {
-    // favorites will be an array of recipes
-    const localFavorites = JSON.parse(localStorage.getItem("favorites"));
-    localFavorites.push(JSON.parse(localStorage.getItem("recipe")));
-    localStorage.setItem("favorites", JSON.stringify(localFavorites));
-  } else {
-    const localFavorite = [JSON.parse(localStorage.getItem("recipe"))];
-    localStorage.setItem("favorites", JSON.stringify(localFavorite));
-  }
-  alert("this recipe was saved to your favorites.");
+const favoriteRecipe = async () => {
+  const user = await getUser(localStorage.getItem("userName"));
+  const recipe = JSON.parse(localStorage.getItem('recipe'));
+  saveFavorite(user.userName, recipe.recipe);
 };
+
+const saveFavorite = async (userName, recipe) => {
+  try {
+    const response = await fetch(`/api/favorited-recipe`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ userName, recipe }),
+    });
+    const user = await response.json();
+    console.log(user);
+  } catch {
+    console.error('error saving favorite recipe /favorited-recipe');
+  }
+}
 
 const saveComment = async (name, commentText, id) => {
   try {
@@ -124,6 +128,16 @@ const getRecipe = async (id) => {
   displayComments(recipe.recipe.comments)
   displayRecipePage(recipe.recipe);
 };
+
+const getUser = async (userName) => {
+  // See if we have a user with the given email.
+  const response = await fetch(`/api/user/${userName}`);
+  if (response.status === 200) {
+    return response.json();
+  }
+
+  return null;
+}
 
 // id stored in local storage for current recipe page
 getRecipe(localStorage.getItem("id"));
