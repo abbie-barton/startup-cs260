@@ -126,7 +126,7 @@ secureApiRouter.get('/recipe', async (req, res) => {
   res.json(recipe);
 });
 
-// get recent recipes (4)
+// get recent recipes (6)
 secureApiRouter.get('/recent-recipes', async (req, res) => {
   const recipes = await db.getRecentRecipes();
   res.json(recipes);

@@ -23,7 +23,8 @@ const getUser = async (userName) => {
   const query = { 'userName': userName };
   const user = await userCollection.findOne(query);
   if (!user) {
-    throw new Error(`User with username ${userName} not found.`);
+    // throw new Error(`User with username ${userName} not found.`);
+    console.log(`User with username ${userName} not found.`);
   }
   return user;
 }

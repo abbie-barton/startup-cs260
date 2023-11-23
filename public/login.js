@@ -50,12 +50,11 @@ const loginOrCreate = async (endpoint) => {
   }
 }
 
-const getUser = async (userName) => {
-  // See if we have a user with the given email.
-  const response = await fetch(`/api/user/${userName}`);
-  if (response.status === 200) {
-    return response.json();
-  }
+// const getUser = async (userName) => {
+//   const response = await fetch(`/api/user/${userName}`);
+//   if (response.status === 200) {
+//     return response.json();
+//   }
 
-  return null;
-}
+//   return null;
+// }
