@@ -83,6 +83,7 @@ const favoriteRecipe = async () => {
   const user = await getUser(localStorage.getItem("userName"));
   const recipe = JSON.parse(localStorage.getItem('recipe'));
   saveFavorite(user.userName, recipe.recipe);
+  alert('recipe favorited successfully');
 };
 
 const saveFavorite = async (userName, recipe) => {
