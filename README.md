@@ -80,3 +80,10 @@ note - the iframe will be different as a website has different iframe than youtu
 * Use MongoDB to store users - stores user, favorited recipes, and contributed recipes
 * Restricted Functionality - the whole website cannot be accessed unless you are logged in
 * Lots of work was done on the 'my account' page - it shows favorited/contributed recipes dynamically and has a logout function
+
+# Websocket Deliverable
+### Websocket functionality on recipe page
+* Backend listens for WebSocket connection - done
+* Frontend makes WebSocket connection - done
+* Data sent over WebSocket connection - when a recipe is favorited, the recipe title and user name are sent over the connection
+* WebSocket data displayed - info displayed on a recipe page (footer) whenever a recipe is favorited by a user
