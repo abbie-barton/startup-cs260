@@ -121,115 +121,68 @@ const getUser = async (userName) => {
 // id stored in local storage for current recipe page
 getRecipe(localStorage.getItem("id"));
 
-// favorite recipe javascript & websocket broadcast
-// javascript
-const favoriteRecipe = async () => {
-  const user = await getUser(localStorage.getItem("userName"));
-  const recipe = JSON.parse(localStorage.getItem('recipe'));
-  saveFavorite(user.userName, recipe.recipe);
-  alert('recipe favorited successfully');
-};
-
-const saveFavorite = async (userName, recipe) => {
-  try {
-    const response = await fetch(`/api/favorited-recipe`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ userName, recipe }),
-    });
-    const user = await response.json();
-    return user;
-  } catch {
-    console.error('error saving favorite recipe /favorited-recipe');
-  }
-}
-
 //websocket
-class Game {
+class Favorite {
   socket;
 
   constructor() {
     this.configureWebSocket();
   }
 
-  async reset() {
-    this.allowPlayer = false;
-    this.playerPlaybackPos = 0;
-    this.sequence = [];
-    this.updateScore('--');
-    await this.buttonDance(1);
-    this.addButton();
-    await this.playSequence();
-    this.allowPlayer = true;
-
-    // Let other players know a new game has started
-    this.broadcastEvent(this.getUserName(), GameStartEvent, {});
+  async favorite() {
+    const user = localStorage.getItem('userName');
+    const recipe = JSON.parse(localStorage.getItem('recipe'));
+    this.saveFavorite(user, recipe.recipe);
+    alert('recipe favorited successfully');
+    this.broadcastEvent(user, recipe.recipe.title)
   }
 
-  getUserName() {
-    return localStorage.getItem('userName') ?? 'Mystery player';
-  }
-
-  async saveScore(score) {
-    const userName = this.getPlayerName();
-    const date = new Date().toLocaleDateString();
-    const newScore = { name: userName, score: score, date: date };
-
+  async saveFavorite(userName, recipe) {
     try {
-      const response = await fetch('/api/score', {
+      const response = await fetch(`/api/favorited-recipe`, {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify(newScore),
+        body: JSON.stringify({ userName, recipe }),
       });
-
-      // Let other players know the game has concluded
-      this.broadcastEvent(userName, GameEndEvent, newScore);
-
-      // Store what the service gave us as the high scores
-      const scores = await response.json();
-      localStorage.setItem('scores', JSON.stringify(scores));
+      const user = await response.json();
+      return user;
     } catch {
-      // If there was an error then just track scores locally
-      this.updateScoresLocal(newScore);
+      console.error('error saving favorite recipe /favorited-recipe');
     }
   }
 
   // Functionality for peer communication using WebSocket
-
   configureWebSocket() {
     const protocol = window.location.protocol === 'http:' ? 'ws' : 'wss';
     this.socket = new WebSocket(`${protocol}://${window.location.host}/ws`);
     this.socket.onopen = (event) => {
-      this.displayMsg('system', 'game', 'connected');
+      console.log('websocket connected')
     };
     this.socket.onclose = (event) => {
-      this.displayMsg('system', 'game', 'disconnected');
+      console.log('websocket closed');
     };
     this.socket.onmessage = async (event) => {
-      const msg = JSON.parse(await event.data.text());
-      if (msg.type === GameEndEvent) {
-        this.displayMsg('player', msg.from, `scored ${msg.value.score}`);
-      } else if (msg.type === GameStartEvent) {
-        this.displayMsg('player', msg.from, `started a new game`);
-      }
+      const text = await event.data.text();
+      const msg = JSON.parse(text)
+      this.displayMsg(msg);
     };
   }
 
-  displayMsg(cls, from, msg) {
-    const chatText = document.querySelector('#player-messages');
-    chatText.innerHTML =
-      `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
+  displayMsg(msg) {
+    const heartContainer = document.getElementById("heart-holder");
+    const newFavorite = document.createElement("p");
+    newFavorite.textContent = `${msg.user} favorited ${msg.recipeName}`;
+    heartContainer.appendChild(newFavorite);
   }
 
-  broadcastEvent(from, type, value) {
+  broadcastEvent(user, recipeName) {
     const event = {
-      from: from,
-      type: type,
-      value: value,
+      user: user,
+      recipeName: recipeName,
     };
     this.socket.send(JSON.stringify(event));
   }
 }
 
-const game = new Game();
+const favorite = new Favorite();
 
