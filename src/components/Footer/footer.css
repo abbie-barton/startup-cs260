@@ -1,0 +1,35 @@
+footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-top: 4px solid #ffe5d0;
+    padding: 0.5rem 5rem;
+  }
+  
+  footer a:hover {
+    border-bottom: 1px solid #e8dac6;
+  }
+  
+  a:hover {
+    cursor: pointer;
+  }
+
+  a {
+    text-decoration: none;
+    color: #525252;
+  }
+
+  h1 {
+    font-weight: 400;
+  }
+
+  #footer-heart {
+    transition: all 0.5s;
+    border-radius: 50%;
+  }
+  
+  .add-glow {
+    color: rgba(255, 255, 255, 1);
+    box-shadow: 0 5px 15px rgba(145, 92, 182, 0.4);
+  }
