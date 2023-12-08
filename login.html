@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Make it Good</title>
+    <link rel="icon" type="image/x-icon" href="/assets/startupLogo.svg" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="globalStyles.css" />
+
+    <script src="login.js"></script>
+    <script src="favorite.js"></script>
+  </head>
+  <body>
+    <!-- login page -->
+    <header>
+      <div id="logo-container">
+        <img id="logo" src="/assets/startupLogo.svg" alt="make it good logo" />
+        <h1 id="make-it-good">Make it Good</h1>
+      </div>
+    </header>
+
+    <div id="login">
+      <h1>Log in</h1>
+      <!-- not super sure how to handle if they have signed in or not -->
+      <form id="login-form" class="d-flex flex-column">
+        <label for="username" class="form-label"
+          >Username:
+        </label>
+        <input
+          type="text"
+          name="username"
+          id="username"
+          class="form-control"
+          required
+          autocomplete="on"
+        />
+        <label for="password" class="form-label"
+          >Password:
+        </label>
+        <input
+          type="password"
+          name="password"
+          id="password"
+          class="form-control"
+          required
+          autocomplete="on"
+        />
+        <div class="d-flex flex-row justify-content-center pt-3">
+          <button type="reset" class="btn btn-outline-dark pt-2 mx-1" id="login-button" onclick="login()">
+            Log in
+          </button>
+          <button type="reset" class="btn btn-outline-dark pt-2 mx-1" id="signup-button" onclick="signup()">
+            Sign Up
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- footer -->
+    <footer>
+      <a
+        href="https://github.com/abbie-barton/startup-cs260.git"
+        target="_blank"
+        class="pt-2"
+        >My github repository</a
+      >
+      <div id="heart-holder" class="text-end">
+        <img
+          id="footer-heart"
+          src="/assets/heart-circle.svg"
+          alt="heart icon"
+          width="50"
+        />
+      </div>
+    </footer>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
