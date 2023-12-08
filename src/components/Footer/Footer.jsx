@@ -7,11 +7,11 @@ export default function Footer() {
       <a
         href="https://github.com/abbie-barton/startup-cs260.git"
         target="_blank"
-        class="pt-2"
+        className="pt-2"
       >
         My github repository
       </a>
-      <div id="heart-holder" class="text-end">
+      <div id="heart-holder" className="text-end">
         <img
           id="footer-heart"
           src="/assets/heart-circle.svg"

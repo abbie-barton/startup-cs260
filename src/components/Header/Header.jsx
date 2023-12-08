@@ -1,6 +1,6 @@
 import React from "react";
 import './header.css';
-import Menu from '../../../assets/burger-menu.svg';
+import { NavLink } from "react-router-dom";
 
 export default function Header() {
   return (
@@ -11,10 +11,10 @@ export default function Header() {
         <h1 className="text-4xl font-normal self-center">Make it Good</h1>
       </div>
       <ul>
-        <li><a href="home.html">home</a></li>
-        <li><a href="recipeCatalog.html">recipe catalog</a></li>
-        <li><a href="uploadRecipe.html">upload recipe</a></li>
-        <li><a href="account.html">my account</a></li>
+        <li><NavLink to="home">home</NavLink></li>
+        <li><NavLink to="recipe-catalog">recipe catalog</NavLink></li>
+        <li><NavLink to="upload-recipe">upload recipe</NavLink></li>
+        <li><NavLink to="account">my account</NavLink></li>
       </ul>
     </header>
     </>
