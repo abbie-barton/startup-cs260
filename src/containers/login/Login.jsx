@@ -1,11 +1,13 @@
 import React from "react";
 import Header from "../../components/Header/Header";
 import '../../globalStyles.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 export default function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const login = () => {
     if (userName && password) {
@@ -19,12 +21,12 @@ export default function Login() {
     }
   };
 
-  (async () => {
-    const userName = localStorage.getItem("userName");
-    if (userName) {
-      window.location.href = "home.html";
+  useEffect(() => {
+    const user = localStorage.getItem("userName");
+    if (user) {
+      navigate("/home");
     }
-  })();
+  }, [])
 
   const loginUser = async () => {
     loginOrCreate(`/api/auth/login`);
@@ -35,6 +37,8 @@ export default function Login() {
   };
 
   const loginOrCreate = async (endpoint) => {
+    console.log(password);
+    console.log(userName);
     const response = await fetch(endpoint, {
       method: "post",
       body: JSON.stringify({ userName: userName, password: password }),
@@ -46,7 +50,7 @@ export default function Login() {
 
     if (response.ok) {
       localStorage.setItem("userName", userName);
-      window.location.href = "home.html";
+      navigate("/home");
     } else {
       const body = await response.json();
       alert(`⚠ Error: ${body.msg}`);
