@@ -30,16 +30,16 @@ export default function Header() {
         ) : (
           <ul>
             <li>
-              <NavLink to="home">home</NavLink>
+              <NavLink to="../home">home</NavLink>
             </li>
             <li>
-              <NavLink to="recipe-catalog">recipe catalog</NavLink>
+              <NavLink to="../recipe-catalog">recipe catalog</NavLink>
             </li>
             <li>
-              <NavLink to="upload-recipe">upload recipe</NavLink>
+              <NavLink to="../upload-recipe">upload recipe</NavLink>
             </li>
             <li>
-              <NavLink to="account">my account</NavLink>
+              <NavLink to="../account">my account</NavLink>
             </li>
           </ul>
         )}
