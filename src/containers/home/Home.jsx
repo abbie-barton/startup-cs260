@@ -8,6 +8,7 @@ import Footer from "../../components/Footer/Footer";
 
 export default function Home() {
   const [recipes, setRecipes] = useState([]);
+  const [joke, setJoke] = useState('')
 
   const getRecentRecipes = async () => {
     try {
@@ -20,8 +21,17 @@ export default function Home() {
     }
   };
 
+  const getRandJoke = () => {
+    fetch(`https://api.chucknorris.io/jokes/random`)
+      .then((response) => response.json())
+      .then((data) => {
+        setJoke(data.value);
+      });
+  };
+
   useEffect(() => {
     getRecentRecipes();
+    getRandJoke();
   }, []);
 
   return (
@@ -51,6 +61,8 @@ export default function Home() {
               you! These website is a collection of recipes we've found and
               liked. Enjoy!
             </p>
+            <h4 className="pt-4 font-normal text-lg">enjoy a joke</h4>
+            <p>{joke}</p>
           </div>
         </div>
       </div>
