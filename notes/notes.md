@@ -1,6 +1,6 @@
 # deploy 
 ### make sure you're in the directory with deployFiles.sh
-./deployFiles.sh -k /Users/abigailbarton/Documents/dev/'web programming'/[pemkey] -h makeitgood.click -s startup
+./deployReact.sh -k /Users/abigailbarton/Documents/dev/'web programming'/[pemkey] -h makeitgood.click -s startup
 ### for node service
 code in deployFiles.sh was changed to deploy with a service - prev code was commented out
 

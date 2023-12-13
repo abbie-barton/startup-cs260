@@ -87,3 +87,10 @@ note - the iframe will be different as a website has different iframe than youtu
 * Frontend makes WebSocket connection - done
 * Data sent over WebSocket connection - when a recipe is favorited, the recipe title and user name are sent over the connection
 * WebSocket data displayed - info displayed on a recipe page (footer) whenever a recipe is favorited by a user
+
+# React Deliverable
+### converted website to React
+* Bundled & Transpiled - done
+* Components - each page is its own components with the header, footer, and cards as separate components as well
+* Router - route used for each page
+* Hooks - almost every page uses useState and useEffect to handle changes from the user
