@@ -8,7 +8,7 @@ import Footer from "../../components/Footer/Footer";
 
 export default function Home() {
   const [recipes, setRecipes] = useState([]);
-  const [joke, setJoke] = useState('')
+  const [joke, setJoke] = useState("");
 
   const getRecentRecipes = async () => {
     try {
@@ -40,12 +40,15 @@ export default function Home() {
       <div id="index-body" className="px-10">
         <div className="flex flex-row justify-center">
           <div className="px-10">
-          <h2 className="py-4 font-semibold text-2xl">Most recent recipes</h2>
-          <div id="recent-recipes" className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {recipes.map((recipe) => (
-              <RecipeCard key={recipe.id} recipe={recipe.recipe} />
-            ))}
-          </div>
+            <h2 className="py-4 font-semibold text-2xl">Most recent recipes</h2>
+            <div
+              id="recent-recipes"
+              className="grid xs:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
+              {recipes.map((recipe) => (
+                <RecipeCard key={recipe.id} recipe={recipe.recipe} />
+              ))}
+            </div>
           </div>
           <div id="about" className="col-3 p-2">
             <h4 className="py-4 text-xl">About us</h4>

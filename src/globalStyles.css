@@ -82,10 +82,6 @@ a:hover {
   cursor: pointer;
 }
 
-#recipeCard {
-    width: 300px;
-}
-
 #recipeCard img {
   transition: box-shadow 0.5s;
 }
