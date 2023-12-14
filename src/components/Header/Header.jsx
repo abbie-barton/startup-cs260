@@ -2,6 +2,7 @@ import React from "react";
 import "./header.css";
 import { NavLink, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Logo from "../../../assets/startupLogo.svg";
 
 export default function Header() {
   const location = useLocation();
@@ -20,7 +21,7 @@ export default function Header() {
         <div className="flex flex-row">
           <img
             id="logo"
-            src="/assets/startupLogo.svg"
+            src={Logo}
             alt="make it good logo"
           />
           <h1 className="text-4xl font-normal self-center">Make it Good</h1>

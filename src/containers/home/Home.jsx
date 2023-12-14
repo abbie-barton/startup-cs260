@@ -5,6 +5,7 @@ import "../../globalStyles.css";
 import RecipeCard from "../../components/RecipeCard/RecipeCard";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import Kid from "../../../assets/baking-kid.jpg";
 
 export default function Home() {
   const [recipes, setRecipes] = useState([]);
@@ -53,7 +54,7 @@ export default function Home() {
           <div id="about" className="col-3 p-2">
             <h4 className="py-4 text-xl">About us</h4>
             <img
-              src="/assets/baking-kid.jpg"
+              src={Kid}
               alt="placeholder img"
               width="300"
               className="pb-4"

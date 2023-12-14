@@ -2,13 +2,14 @@ import '../../globalStyles.css'
 import { NavLink } from 'react-router-dom'
 import React from 'react';
 import '../../globalStyles.css'
+import Placeholder from '../../../assets/foodbaby.jpg'
 
 export default function RecipeCard({ recipe }) {
     return (
         <div id="recipeCard" className="col">
           <NavLink to={`/recipe-page/${recipe.id}`} onClick={() => localStorage.setItem('id', recipe.id)}>
               <img
-                src="../../assets/foodbaby.jpg"
+                src={Placeholder}
                 alt="filler for image card"
                 width="300"
               />

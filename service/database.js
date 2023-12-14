@@ -114,4 +114,4 @@ const addContributedRecipe = async (userName, recipe) => {
   return user;
 }
 
-module.exports = { addRecipe, getRecipe, getRecentRecipes, getAllRecipes, addComment, getComments, getUser, getUserByToken, createUser, addFavoriteRecipe, addContributedRecipe };
+module.exports = { addRecipe, getRecipe, getRecentRecipes, addComment, getComments, getUser, getUserByToken, createUser, addFavoriteRecipe, addContributedRecipe };

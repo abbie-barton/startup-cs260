@@ -234,3 +234,55 @@ ex. const async myFunction = () => {
 }
 this will return the actual data that somethingThatReturnsAPromise() returns, instead of returning a promise
 
+
+# Notes for the final
+### What ports are used for HTTP, HTTPS, SSH?
+HTTP - 80, HTTPS - 443, SSH - 22
+### What do HTTP status codes in the 300, 400, 500 range indicate?
+300 -redirection of some sort
+400 - client error response
+500 - server error response
+### What does the HTTP header content-type allows you to do?
+tells us what type of content we're dealing with - examples: json, html, plaintext, etc
+allows you to specify the content type you're sending over HTTP
+### What do the following attributes of a cookie do?
+Domain - maps to what domain the cookie is coming from
+Path - specifies path cookie was generated - startup.cs260.click/foo - in this example, '/foo' is the path
+SameSite - will only return the cookie to the domain it is generated with (ex google generated cookie - only google will have access to that cookie)
+HTTPOnly - tells the browser to not allow javascript to run on the browser so it can read the cookie
+### Assuming the following Express middleware, what would be the console.log output for an HTTP GET request with a URL path of /foo/bar?
+determine which functions are called and in what order
+# # # # # todo
+
+### Given the following Express service code: What does the following JavaScript fetch return?
+in general, fetch requests on the frontend return results of the communication to the server (status code, data)
+express service codes 
+# # # # # todo
+
+### Given the following MongoDB query { cost: { $gt: 10 }, name: /fran.*/} select all of the matching documents.
+grabs documents where cost is greater than 10 and the name is a string beginning with fran, returns an array of all matching documents
+### How should you store user passwords in a database?
+hash and salted
+# # # # # todo - what is salt vs hash
+
+### Assuming the following Node.js service code is executing with websockets, what will be logged to the console of the web browser?
+be familiar with websockets - what backend does on connect, disconnect, and message
+# # # # # insert websocket code example setup
+
+### What is the WebSocket protocol used for?
+either the server or the client can initiate contact to each other - server to client or client to server (realtime data)
+instantaneous client-server connection where either client or server can initiate contact
+### What is JSX and how are the curly braces rendered?
+javascript and html smushed together - anything after the return is rendered to the screen. curly brances in the return are rendered with javascript. if calling a function within the return, just put the function name in curly braces and it will call the javascript
+### What are React Hooks used for?
+modifies state of the component - handles the lifecycle events of a component (onCreate, onDestroy etc)
+### What is the useEffect hook used for?
+conditional rendering - watches lifecycle events based off the component and renders depending on that
+### What role does npm play in web development?
+manages your node packages and allows you to download third party packages for use in your code 
+### What does package.json do in a npm project?
+lists all packages you have, and during deployment you can specify certain scripts for deployment. 
+### What does node.js do?
+runs the server - you can run javascript on your local machine
+### What does vite do?
+allows you to bundle all your code together for production so you can display react components

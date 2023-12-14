@@ -1,4 +1,5 @@
 import React from "react";
+import Heart from "../../../assets/heart-circle.svg";
 import "./footer.css";
 
 export default function Footer() {
@@ -14,7 +15,7 @@ export default function Footer() {
       <div id="heart-holder" className="text-end">
         <img
           id="footer-heart"
-          src="/assets/heart-circle.svg"
+          src={Heart}
           alt="heart icon"
           width="50"
         />
