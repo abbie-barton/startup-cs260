@@ -6,8 +6,8 @@ import Favorite from "../../components/Favorite/Favorite";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Heart from "../../../assets/heart-circle.svg";
-import Kid from "../../../baking-kid.jpg";
-import FoodBaby from "../../../foodbaby.jpg";
+import Kid from "../../../assets/baking-kid.jpg";
+import FoodBaby from "../../../assets/foodbaby.jpg";
 
 export default function RecipePage() {
   const [recipe, setRecipe] = useState({});
