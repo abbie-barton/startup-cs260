@@ -5,6 +5,9 @@ import CommentCard from "../../components/CommentCard/CommentCard";
 import Favorite from "../../components/Favorite/Favorite";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import Heart from "../../../assets/heart-circle.svg";
+import Kid from "../../../baking-kid.jpg";
+import FoodBaby from "../../../foodbaby.jpg";
 
 export default function RecipePage() {
   const [recipe, setRecipe] = useState({});
@@ -68,7 +71,7 @@ export default function RecipePage() {
             </h1>
             <div id="favorite-icon" className="px-2">
               <img
-                src="/assets/heart-circle.svg"
+                src={Heart}
                 alt="favorite recipe icon"
                 width="50"
                 onClick={handleFavoriteClick}
@@ -86,12 +89,12 @@ export default function RecipePage() {
           <p id="description">{recipe.description}</p>
           <div className="d-flex flex-row justify-content-center align-items-center py-4">
             <img
-              src="/assets/foodbaby.jpg"
+              src={FoodBaby}
               alt="recipe picture"
               className="w-25 px-2"
             />
             <img
-              src="/assets/baking-kid.jpg"
+              src={Kid}
               alt="recipe picture"
               className="w-25 px-2"
             />
