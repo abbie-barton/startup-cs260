@@ -252,23 +252,84 @@ SameSite - will only return the cookie to the domain it is generated with (ex go
 HTTPOnly - tells the browser to not allow javascript to run on the browser so it can read the cookie
 ### Assuming the following Express middleware, what would be the console.log output for an HTTP GET request with a URL path of /foo/bar?
 determine which functions are called and in what order
-# # # # # todo
-
+### Express middleware example
+// Middleware example
+const requestLoggerMiddleware = (req, res, next) => {
+  console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+  next(); // Call next to pass control to the next middleware in the stack
+};
+// Use the middleware for all routes
+app.use(requestLoggerMiddleware);
 ### Given the following Express service code: What does the following JavaScript fetch return?
 in general, fetch requests on the frontend return results of the communication to the server (status code, data)
 express service codes 
-# # # # # todo
-
 ### Given the following MongoDB query { cost: { $gt: 10 }, name: /fran.*/} select all of the matching documents.
 grabs documents where cost is greater than 10 and the name is a string beginning with fran, returns an array of all matching documents
 ### How should you store user passwords in a database?
-hash and salted
-# # # # # todo - what is salt vs hash
-
+hash - Hashing is the process of converting a plaintext password into a fixed-length string of characters, which is typically a hash value. Hashing functions are called on passwords (ex bcrypt) and stored in the database instead of the password.
+salt - Salting involves adding a unique and random piece of data (salt) to each password before hashing.  This makes it so that even identical passwords will not produce the same hash.
 ### Assuming the following Node.js service code is executing with websockets, what will be logged to the console of the web browser?
 be familiar with websockets - what backend does on connect, disconnect, and message
-# # # # # insert websocket code example setup
+### example websocket setup (from startup)
+const { WebSocketServer } = require('ws');
+const uuid = require('uuid');
 
+function peerProxy(httpServer) {
+  // Create a websocket object
+  const wss = new WebSocketServer({ noServer: true });
+
+  // Handle the protocol upgrade from HTTP to WebSocket
+  httpServer.on('upgrade', (request, socket, head) => {
+    wss.handleUpgrade(request, socket, head, function done(ws) {
+      wss.emit('connection', ws, request);
+    });
+  });
+
+  // Keep track of all the connections so we can forward messages
+  let connections = [];
+
+  wss.on('connection', (ws) => {
+    const connection = { id: uuid.v4(), alive: true, ws: ws };
+    connections.push(connection);
+
+    // Forward messages to everyone except the sender
+    ws.on('message', function message(data) {
+      connections.forEach((c) => {
+        c.ws.send(data)
+      });
+    });
+
+    // Remove the closed connection so we don't try to forward anymore
+    ws.on('close', () => {
+      connections.findIndex((o, i) => {
+        if (o.id === connection.id) {
+          connections.splice(i, 1);
+          return true;
+        }
+      });
+    });
+
+    // Respond to pong messages by marking the connection alive
+    ws.on('pong', () => {
+      connection.alive = true;
+    });
+  });
+
+  // Keep active connections alive
+  setInterval(() => {
+    connections.forEach((c) => {
+      // Kill any connection that didn't respond to the ping last time
+      if (!c.alive) {
+        c.ws.terminate();
+      } else {
+        c.alive = false;
+        c.ws.ping();
+      }
+    });
+  }, 10000);
+}
+
+module.exports = { peerProxy };
 ### What is the WebSocket protocol used for?
 either the server or the client can initiate contact to each other - server to client or client to server (realtime data)
 instantaneous client-server connection where either client or server can initiate contact
